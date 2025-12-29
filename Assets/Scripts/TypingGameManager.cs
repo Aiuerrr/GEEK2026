@@ -20,44 +20,48 @@ public class TypingGameManager : MonoBehaviour
     public string textToType = "Przykładowy tekst do przepisania. Wpisz go poprawnie, aby wygrać grę.";
     public float initialTime = 60f;
 
-    [Header("Effects")]
-    public AudioSource audioSource;
-    [Tooltip("Writing sounds")]
-    public AudioClip[] typingSounds;
-    [Tooltip("Error sound")]
-    public AudioClip errorSound;
-    [Tooltip("Particles and shake")]
-    public ParticleSystem typeParticles;
-    public Transform cameraTransform;
-    public float shakeIntensity = 0.5f;
+    [Header("Visual Effects")]
+    // WAŻNE: Nie przypisuj tu Canvasa! Przypisz Text albo Panel wewnątrz Canvasa.
+    public RectTransform uiElementToShake;
+    public float shakeIntensity = 15f; // Zwiększyłem, żeby było lepiej widać
     public float shakeDuration = 0.2f;
+    public float cursorBlinkSpeed = 0.5f;
 
     private float currentTime;
     private int currentIndex;
     private int mistakes;
     private bool isGameActive;
     private float startTime;
-    private Vector3 originalCameraPos;
 
-void Start()
+    private Vector2 originalUiPos;
+    private bool isCursorVisible = true;
+    private float blinkTimer = 0f;
+
+    void Start()
     {
-        if (cameraTransform == null && Camera.main != null) 
-            cameraTransform = Camera.main.transform;
-            
-        originalCameraPos = cameraTransform.position;
+        // Auto-przypisanie, jeśli zapomniałeś, ale lepiej przypisz ręcznie w Inspectorze
+        if (uiElementToShake == null)
+        {
+            // Próbuje znaleźć RectTransform na tym samym obiekcie
+            uiElementToShake = GetComponent<RectTransform>();
+        }
+
+        if (uiElementToShake != null)
+        {
+            originalUiPos = uiElementToShake.anchoredPosition;
+        }
+
         StartGame();
     }
 
     void OnEnable()
     {
-        if (Keyboard.current != null)
-            Keyboard.current.onTextInput += OnTextInput;
+        if (Keyboard.current != null) Keyboard.current.onTextInput += OnTextInput;
     }
 
     void OnDisable()
     {
-        if (Keyboard.current != null)
-            Keyboard.current.onTextInput -= OnTextInput;
+        if (Keyboard.current != null) Keyboard.current.onTextInput -= OnTextInput;
     }
 
     void StartGame()
@@ -85,6 +89,15 @@ void Start()
         }
 
         UpdateTimerUI();
+
+        // Miganie kursora
+        blinkTimer += Time.deltaTime;
+        if (blinkTimer >= cursorBlinkSpeed)
+        {
+            blinkTimer = 0f;
+            isCursorVisible = !isCursorVisible;
+            UpdateTextDisplay();
+        }
     }
 
     void OnTextInput(char c)
@@ -98,15 +111,12 @@ void Start()
 
             if (c == expectedChar)
             {
-                // --- POPRAWNE WPISANIE ---
+                // Poprawne
                 currentIndex++;
                 if (feedbackText) feedbackText.text = "";
-                
-                // 1. Dźwięk z losowym pitch (żeby nie brzmiało jak robot)
-                PlayTypingSound();
 
-                // 2. Cząsteczki
-                if(typeParticles) typeParticles.Play();
+                isCursorVisible = true; // Pokaż kursor przy pisaniu
+                blinkTimer = 0f;
 
                 if (currentIndex >= textToType.Length)
                 {
@@ -120,52 +130,38 @@ void Start()
             }
             else
             {
-                // --- BŁĄD ---
+                // Błąd
                 mistakes++;
-                if (feedbackText) 
-                {
-                    feedbackText.text = "BŁĄD!";
-                    feedbackText.color = Color.red; // Zmieniamy kolor na czerwony
-                }
+                if (feedbackText) feedbackText.text = "BŁĄD!";
 
-                // 1. Dźwięk błędu
-                if (audioSource && errorSound) audioSource.PlayOneShot(errorSound);
-
-                // 2. Trzęsienie kamerą
-                StartCoroutine(ShakeCamera());
+                // Shake
+                StopAllCoroutines();
+                StartCoroutine(ShakeUI());
             }
         }
     }
 
-    // NEW: Funkcja do odtwarzania przyjemnego dźwięku
-    void PlayTypingSound()
+    IEnumerator ShakeUI()
     {
-        if (audioSource && typingSounds.Length > 0)
-        {
-            // Losowy dźwięk z listy
-            AudioClip clip = typingSounds[Random.Range(0, typingSounds.Length)];
-            
-            // Losowa wysokość dźwięku (0.95 do 1.05) - to daje efekt "naturalności"
-            audioSource.pitch = Random.Range(0.95f, 1.05f);
-            audioSource.PlayOneShot(clip);
-        }
-    }
+        if (uiElementToShake == null) yield break;
 
-    // NEW: Funkcja Screen Shake
-    IEnumerator ShakeCamera()
-    {
         float elapsed = 0.0f;
+
+        // Upewniamy się, że startujemy z dobrej pozycji
+        uiElementToShake.anchoredPosition = originalUiPos;
+
         while (elapsed < shakeDuration)
         {
             float x = Random.Range(-1f, 1f) * shakeIntensity;
             float y = Random.Range(-1f, 1f) * shakeIntensity;
 
-            cameraTransform.position = originalCameraPos + new Vector3(x, y, 0);
+            uiElementToShake.anchoredPosition = originalUiPos + new Vector2(x, y);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
-        cameraTransform.position = originalCameraPos;
+
+        uiElementToShake.anchoredPosition = originalUiPos;
     }
 
     void UpdateTextDisplay()
@@ -174,36 +170,34 @@ void Start()
 
         string correctPart = textToType.Substring(0, currentIndex);
         string remainingPart = textToType.Substring(currentIndex);
-        
-        // NEW: Dodajemy kursor (znak pipe |) z mrugającym kolorem lub stałym
-        // Dodatkowo: Podświetlony następny znak
-        string cursor = "<color=#FFA500>|</color>"; // Pomarańczowy kursor
 
-        // Formatowanie:
-        // Poprawne: Białe/Jasne
-        // Pozostałe: Półprzezroczyste
-        string formattedText = $"<color=#FFFFFF>{correctPart}</color>{cursor}<color=#FFFFFF50>{remainingPart}</color>";
-        
+        // --- FIX SKAKANIA ---
+        // Zamiast pustego stringa "", używamy <alpha=#00>|, co sprawia że znak jest, ale jest przezroczysty.
+        // Dzięki temu szerokość tekstu się nie zmienia.
+        string cursorTag = (isGameActive && isCursorVisible) ? "" : "<alpha=#00>";
+        string cursor = $"<color=#000000>{cursorTag}|</color>";
+
+        string formattedText = $"<color=#000000>{correctPart}</color>{cursor}<color=#808080>{remainingPart}</color>";
         textDisplay.text = formattedText;
     }
 
     void UpdateTimerUI()
     {
-        if (timerText)
-            timerText.text = $"Czas: {Mathf.CeilToInt(currentTime)}s";
+        if (timerText) timerText.text = $"Czas: {Mathf.CeilToInt(currentTime)}s";
     }
 
     void EndGame()
     {
         isGameActive = false;
+        isCursorVisible = false;
+        UpdateTextDisplay();
         UpdateTimerUI();
 
         float duration = Time.time - startTime;
         if (duration <= 0) duration = 0.1f;
-
         float wpm = (textToType.Length / 5f) / (duration / 60f);
 
-        string result = $"<size=150%>Koniec!</size>\n\nBłędy: <color=red>{mistakes}</color>\nPrędkość: <color=green>{wpm:F0} WPM</color>";
+        string result = $"Koniec!\nBłędy: {mistakes}\nPrędkość: {wpm:F0} WPM";
         if (statsText) statsText.text = result;
     }
 }
