@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class TypingGameManager : MonoBehaviour
 {
@@ -19,31 +20,44 @@ public class TypingGameManager : MonoBehaviour
     public string textToType = "Przykładowy tekst do przepisania. Wpisz go poprawnie, aby wygrać grę.";
     public float initialTime = 60f;
 
+    [Header("Effects")]
+    public AudioSource audioSource;
+    [Tooltip("Writing sounds")]
+    public AudioClip[] typingSounds;
+    [Tooltip("Error sound")]
+    public AudioClip errorSound;
+    [Tooltip("Particles and shake")]
+    public ParticleSystem typeParticles;
+    public Transform cameraTransform;
+    public float shakeIntensity = 0.5f;
+    public float shakeDuration = 0.2f;
+
     private float currentTime;
     private int currentIndex;
     private int mistakes;
     private bool isGameActive;
     private float startTime;
+    private Vector3 originalCameraPos;
 
-    void Start()
+void Start()
     {
+        if (cameraTransform == null && Camera.main != null) 
+            cameraTransform = Camera.main.transform;
+            
+        originalCameraPos = cameraTransform.position;
         StartGame();
     }
 
     void OnEnable()
     {
         if (Keyboard.current != null)
-        {
             Keyboard.current.onTextInput += OnTextInput;
-        }
     }
 
     void OnDisable()
     {
         if (Keyboard.current != null)
-        {
             Keyboard.current.onTextInput -= OnTextInput;
-        }
     }
 
     void StartGame()
@@ -63,7 +77,6 @@ public class TypingGameManager : MonoBehaviour
     {
         if (!isGameActive) return;
 
-        // Timer Logic
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
@@ -77,9 +90,6 @@ public class TypingGameManager : MonoBehaviour
     void OnTextInput(char c)
     {
         if (!isGameActive) return;
-
-        // Filter control characters (like Backspace, Enter, Esc)
-        // If the game requires handling Enter as part of the text, remove '\r' check.
         if (char.IsControl(c)) return;
 
         if (currentIndex < textToType.Length)
@@ -88,11 +98,16 @@ public class TypingGameManager : MonoBehaviour
 
             if (c == expectedChar)
             {
-                // Correct input
+                // --- POPRAWNE WPISANIE ---
                 currentIndex++;
                 if (feedbackText) feedbackText.text = "";
+                
+                // 1. Dźwięk z losowym pitch (żeby nie brzmiało jak robot)
+                PlayTypingSound();
 
-                // Check if finished
+                // 2. Cząsteczki
+                if(typeParticles) typeParticles.Play();
+
                 if (currentIndex >= textToType.Length)
                 {
                     UpdateTextDisplay();
@@ -105,12 +120,52 @@ public class TypingGameManager : MonoBehaviour
             }
             else
             {
-                // Wrong input
+                // --- BŁĄD ---
                 mistakes++;
-                if (feedbackText) feedbackText.text = "BŁĄD!";
-                // Play sound effect here in the future
+                if (feedbackText) 
+                {
+                    feedbackText.text = "BŁĄD!";
+                    feedbackText.color = Color.red; // Zmieniamy kolor na czerwony
+                }
+
+                // 1. Dźwięk błędu
+                if (audioSource && errorSound) audioSource.PlayOneShot(errorSound);
+
+                // 2. Trzęsienie kamerą
+                StartCoroutine(ShakeCamera());
             }
         }
+    }
+
+    // NEW: Funkcja do odtwarzania przyjemnego dźwięku
+    void PlayTypingSound()
+    {
+        if (audioSource && typingSounds.Length > 0)
+        {
+            // Losowy dźwięk z listy
+            AudioClip clip = typingSounds[Random.Range(0, typingSounds.Length)];
+            
+            // Losowa wysokość dźwięku (0.95 do 1.05) - to daje efekt "naturalności"
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    // NEW: Funkcja Screen Shake
+    IEnumerator ShakeCamera()
+    {
+        float elapsed = 0.0f;
+        while (elapsed < shakeDuration)
+        {
+            float x = Random.Range(-1f, 1f) * shakeIntensity;
+            float y = Random.Range(-1f, 1f) * shakeIntensity;
+
+            cameraTransform.position = originalCameraPos + new Vector3(x, y, 0);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        cameraTransform.position = originalCameraPos;
     }
 
     void UpdateTextDisplay()
@@ -119,11 +174,16 @@ public class TypingGameManager : MonoBehaviour
 
         string correctPart = textToType.Substring(0, currentIndex);
         string remainingPart = textToType.Substring(currentIndex);
+        
+        // NEW: Dodajemy kursor (znak pipe |) z mrugającym kolorem lub stałym
+        // Dodatkowo: Podświetlony następny znak
+        string cursor = "<color=#FFA500>|</color>"; // Pomarańczowy kursor
 
-        // Rich Text Formatting
-        // Black (#000000) for typed/correct letters
-        // Gray (#808080) for remaining letters (simulates transparency/fading)
-        string formattedText = $"<color=#000000>{correctPart}</color><color=#808080>{remainingPart}</color>";
+        // Formatowanie:
+        // Poprawne: Białe/Jasne
+        // Pozostałe: Półprzezroczyste
+        string formattedText = $"<color=#FFFFFF>{correctPart}</color>{cursor}<color=#FFFFFF50>{remainingPart}</color>";
+        
         textDisplay.text = formattedText;
     }
 
@@ -139,12 +199,11 @@ public class TypingGameManager : MonoBehaviour
         UpdateTimerUI();
 
         float duration = Time.time - startTime;
-        if (duration <= 0) duration = 0.1f; // Safety check
+        if (duration <= 0) duration = 0.1f;
 
-        // WPM Calculation: (Characters / 5) / (Minutes)
         float wpm = (textToType.Length / 5f) / (duration / 60f);
 
-        string result = $"Koniec!\nBłędy: {mistakes}\nPrędkość: {wpm:F0} WPM";
+        string result = $"<size=150%>Koniec!</size>\n\nBłędy: <color=red>{mistakes}</color>\nPrędkość: <color=green>{wpm:F0} WPM</color>";
         if (statsText) statsText.text = result;
     }
 }
