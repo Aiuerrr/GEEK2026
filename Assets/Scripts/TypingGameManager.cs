@@ -17,13 +17,12 @@ public class TypingGameManager : MonoBehaviour
 
     [Header("Game Settings")]
     [TextArea(3, 10)]
-    public string textToType = "Przykładowy tekst do przepisania. Wpisz go poprawnie, aby wygrać grę.";
+    public string textToType = "Przykładowy tekst awaryjny."; // Zostanie nadpisany przez ClientManager
     public float initialTime = 60f;
 
     [Header("Visual Effects")]
-    // WAŻNE: Nie przypisuj tu Canvasa! Przypisz Text albo Panel wewnątrz Canvasa.
     public RectTransform uiElementToShake;
-    public float shakeIntensity = 15f; // Zwiększyłem, żeby było lepiej widać
+    public float shakeIntensity = 15f;
     public float shakeDuration = 0.2f;
     public float cursorBlinkSpeed = 0.5f;
 
@@ -31,25 +30,39 @@ public class TypingGameManager : MonoBehaviour
     private int currentIndex;
     private int mistakes;
     private bool isGameActive;
-    private float startTime;
-
+    
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
 
+    // Dodana referencja do Sędziego
+    private GameResultSystem sędzia;
+
     void Start()
     {
-        // Auto-przypisanie, jeśli zapomniałeś, ale lepiej przypisz ręcznie w Inspectorze
-        if (uiElementToShake == null)
+        // 1. Szukamy Sędziego na scenie (GameResultSystem)
+        sędzia = FindFirstObjectByType<GameResultSystem>();
+        if (sędzia == null) 
+            Debug.LogError("⚠️ BRAK GameResultSystem NA SCENIE! Dodaj go do obiektu _SYSTEM!");
+
+        // 2. Pobieramy tekst od Klienta (z Menu)
+        // Sprawdzamy, czy w ogóle przyszedł jakiś tekst (czy nie jest pusty)
+        if (!string.IsNullOrEmpty(ClientManager.TekstDoPrzepisania))
         {
-            // Próbuje znaleźć RectTransform na tym samym obiekcie
-            uiElementToShake = GetComponent<RectTransform>();
+            textToType = ClientManager.TekstDoPrzepisania;
+            Debug.Log("📥 Odebrano tekst od klienta: " + textToType);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ Brak tekstu od klienta. Używam tekstu awaryjnego.");
         }
 
+        // 3. Konfiguracja Shake Effect
+        if (uiElementToShake == null)
+            uiElementToShake = GetComponent<RectTransform>();
+
         if (uiElementToShake != null)
-        {
             originalUiPos = uiElementToShake.anchoredPosition;
-        }
 
         StartGame();
     }
@@ -70,7 +83,6 @@ public class TypingGameManager : MonoBehaviour
         currentIndex = 0;
         mistakes = 0;
         isGameActive = true;
-        startTime = Time.time;
 
         UpdateTextDisplay();
         if (feedbackText) feedbackText.text = "";
@@ -85,7 +97,7 @@ public class TypingGameManager : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
-            EndGame();
+            EndGame(false); // Czas się skończył (false = porażka czasowa)
         }
 
         UpdateTimerUI();
@@ -115,13 +127,13 @@ public class TypingGameManager : MonoBehaviour
                 currentIndex++;
                 if (feedbackText) feedbackText.text = "";
 
-                isCursorVisible = true; // Pokaż kursor przy pisaniu
+                isCursorVisible = true;
                 blinkTimer = 0f;
 
                 if (currentIndex >= textToType.Length)
                 {
                     UpdateTextDisplay();
-                    EndGame();
+                    EndGame(true); // Sukces (true = zdążył)
                 }
                 else
                 {
@@ -134,7 +146,6 @@ public class TypingGameManager : MonoBehaviour
                 mistakes++;
                 if (feedbackText) feedbackText.text = "BŁĄD!";
 
-                // Shake
                 StopAllCoroutines();
                 StartCoroutine(ShakeUI());
             }
@@ -146,21 +157,16 @@ public class TypingGameManager : MonoBehaviour
         if (uiElementToShake == null) yield break;
 
         float elapsed = 0.0f;
-
-        // Upewniamy się, że startujemy z dobrej pozycji
         uiElementToShake.anchoredPosition = originalUiPos;
 
         while (elapsed < shakeDuration)
         {
             float x = Random.Range(-1f, 1f) * shakeIntensity;
             float y = Random.Range(-1f, 1f) * shakeIntensity;
-
             uiElementToShake.anchoredPosition = originalUiPos + new Vector2(x, y);
-
             elapsed += Time.deltaTime;
             yield return null;
         }
-
         uiElementToShake.anchoredPosition = originalUiPos;
     }
 
@@ -170,10 +176,7 @@ public class TypingGameManager : MonoBehaviour
 
         string correctPart = textToType.Substring(0, currentIndex);
         string remainingPart = textToType.Substring(currentIndex);
-
-        // --- FIX SKAKANIA ---
-        // Zamiast pustego stringa "", używamy <alpha=#00>|, co sprawia że znak jest, ale jest przezroczysty.
-        // Dzięki temu szerokość tekstu się nie zmienia.
+        
         string cursorTag = (isGameActive && isCursorVisible) ? "" : "<alpha=#00>";
         string cursor = $"<color=#000000>{cursorTag}|</color>";
 
@@ -186,18 +189,23 @@ public class TypingGameManager : MonoBehaviour
         if (timerText) timerText.text = $"Czas: {Mathf.CeilToInt(currentTime)}s";
     }
 
-    void EndGame()
+    // ZMIENIONE: Funkcja kończąca grę teraz woła Sędziego
+    void EndGame(bool czyZdazyl)
     {
         isGameActive = false;
         isCursorVisible = false;
         UpdateTextDisplay();
         UpdateTimerUI();
 
-        float duration = Time.time - startTime;
-        if (duration <= 0) duration = 0.1f;
-        float wpm = (textToType.Length / 5f) / (duration / 60f);
-
-        string result = $"Koniec!\nBłędy: {mistakes}\nPrędkość: {wpm:F0} WPM";
-        if (statsText) statsText.text = result;
+        if (sędzia != null)
+        {
+            Debug.Log("🏁 Koniec gry! Wołam sędziego...");
+            // Przekazujemy dane do GameResultSystem
+            sędzia.ObliczWynikIKonczGre(currentTime, mistakes, textToType.Length, czyZdazyl);
+        }
+        else
+        {
+            Debug.LogError("‼️ Koniec gry, ale nie ma Sędziego (GameResultSystem)! Nie mogę wrócić do menu.");
+        }
     }
 }
