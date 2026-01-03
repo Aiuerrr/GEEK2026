@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // To ważne dla Buttona
 using System.Collections;
 
 public class ClientManager : MonoBehaviour
@@ -8,14 +8,15 @@ public class ClientManager : MonoBehaviour
     public GameObject klientCalosc;
     public Image obrazekGlowy;
     
-    [Header("--- PIENIĄDZE (INTERAKCJA) ---")]
+    [Header("--- INTERAKCJE ---")]
+    public Button guzikMaszyny;     // <--- NOWE: Tu wrzucisz przycisk maszyny
     public GameObject przyciskKasy; 
     public Image obrazekKasy;       
     
     [Header("--- GRAFIKI MONET ---")]
-    public Sprite monetyMalo;   // 25
-    public Sprite monetySrednio;// 50
-    public Sprite monetyDuzo;   // 100
+    public Sprite monetyMalo;
+    public Sprite monetySrednio;
+    public Sprite monetyDuzo;
 
     [Header("--- GRAFIKI TWARZY ---")]
     public Sprite glowaSzczesliwa;
@@ -32,29 +33,29 @@ public class ClientManager : MonoBehaviour
     public static bool WracamyZGry = false;
 
     [Header("--- ANIMACJA ---")]
-    public float szybkoscWyskoku = 0.5f; // Użyjemy tej samej szybkości do chowania się
+    public float szybkoscWyskoku = 0.5f;
     private Vector3 pozycjaStartowa;
     private Vector3 pozycjaUkryta;
 
     IEnumerator Start()
     {
+        // 1. Blokujemy maszynę na start (żeby nie klikać w powietrze)
+        if (guzikMaszyny != null) guzikMaszyny.interactable = false; // <--- NOWE
+
         // --- KONFIGURACJA POZYCJI ---
         if (klientCalosc != null)
         {
             pozycjaStartowa = klientCalosc.transform.localPosition;
-            // Obliczamy pozycję pod ladą
             pozycjaUkryta = new Vector3(pozycjaStartowa.x, pozycjaStartowa.y - 800f, pozycjaStartowa.z);
         }
 
-        // Ukrywamy kasę na start
         if (przyciskKasy != null) przyciskKasy.SetActive(false);
 
         if (WracamyZGry)
         {
-            // --- SCENARIUSZ A: WRACAMY Z GRY (Klient czeka na wypłatę) ---
+            // --- SCENARIUSZ A: WRACAMY Z GRY ---
             if (klientCalosc != null)
             {
-                // Upewniamy się, że stoi NA MIEJSCU
                 klientCalosc.transform.localPosition = pozycjaStartowa;
                 klientCalosc.SetActive(true);
             }
@@ -64,21 +65,20 @@ public class ClientManager : MonoBehaviour
             if (WygraneMonety > 0)
             {
                 PokazKaseNaLadzie();
-                Debug.Log("💰 Klient położył kasę. Czekam aż podniesiesz...");
+                Debug.Log("💰 Klient położył kasę.");
             }
             else
             {
                 Debug.Log("😡 Klient nic nie płaci i wychodzi.");
-                yield return new WaitForSeconds(2.0f); // Czeka chwilę zły
-                KlientSobieIdzie(); // I chowa się pod ladę
+                yield return new WaitForSeconds(2.0f);
+                KlientSobieIdzie();
             }
         }
         else
         {
-            // --- SCENARIUSZ B: STARTUJEMY GRĘ OD ZERA ---
+            // --- SCENARIUSZ B: STARTUJEMY OD ZERA ---
             if (klientCalosc != null)
             {
-                // Chowamy go pod ladę fizycznie na start
                 klientCalosc.transform.localPosition = pozycjaUkryta;
                 klientCalosc.SetActive(false);
             }
@@ -108,7 +108,6 @@ public class ClientManager : MonoBehaviour
         przyciskKasy.SetActive(true); 
     }
 
-    // FUNKCJA PODPIĘTA POD PRZYCISK KASY
     public void PodniesKase()
     {
         CalkowiteZloto += WygraneMonety;
@@ -118,16 +117,15 @@ public class ClientManager : MonoBehaviour
         WracamyZGry = false;
 
         przyciskKasy.SetActive(false);
-
-        // Klient chowa się pod ladę
         KlientSobieIdzie();
     }
 
-    // --- ZMIENIONA FUNKCJA ---
     void KlientSobieIdzie()
     {
+        // Upewniamy się, że maszyna jest zablokowana jak klient wychodzi
+        if (guzikMaszyny != null) guzikMaszyny.interactable = false; // <--- NOWE
+
         Debug.Log("👋 Klient schodzi pod ladę.");
-        // Zamiast wyłączać, uruchamiamy animację wyjścia
         if (klientCalosc != null) StartCoroutine(AnimujWyjscie());
     }
 
@@ -153,7 +151,6 @@ public class ClientManager : MonoBehaviour
 
     void GenerujNowegoKlienta()
     {
-        // Uruchamiamy animację wejścia
         if (klientCalosc != null) StartCoroutine(AnimujWejscie());
 
         if (glowaSrednia != null) obrazekGlowy.sprite = glowaSrednia;
@@ -169,7 +166,6 @@ public class ClientManager : MonoBehaviour
         return belkot.Trim();
     }
 
-    // --- ANIMACJA WEJŚCIA (Z dołu do góry) ---
     IEnumerator AnimujWejscie()
     {
         if (klientCalosc == null) yield break;
@@ -188,15 +184,16 @@ public class ClientManager : MonoBehaviour
             yield return null;
         }
         klientCalosc.transform.localPosition = pozycjaStartowa;
+
+        // DOPIERO JAK CAŁKIEM WYSKOCZY - WŁĄCZAMY MASZYNĘ
+        if (guzikMaszyny != null) guzikMaszyny.interactable = true; // <--- NOWE
     }
 
-    // --- NOWA ANIMACJA WYJŚCIA (Z góry na dół) ---
     IEnumerator AnimujWyjscie()
     {
         if (klientCalosc == null) yield break;
 
         float czas = 0f;
-        // Nie musimy robić SetActive(true), bo klient już tu jest
 
         while (czas < szybkoscWyskoku)
         {
@@ -204,16 +201,13 @@ public class ClientManager : MonoBehaviour
             float procent = czas / szybkoscWyskoku;
             float t = Mathf.SmoothStep(0f, 1f, procent);
             
-            // Różnica: Lerpujemy OD pozycji startowej DO ukrytej
             klientCalosc.transform.localPosition = Vector3.Lerp(pozycjaStartowa, pozycjaUkryta, t);
             
             yield return null;
         }
-        // Na koniec upewniamy się, że jest pod ladą i go wyłączamy
         klientCalosc.transform.localPosition = pozycjaUkryta;
         klientCalosc.SetActive(false);
 
-        // Dopiero teraz, jak się schował, zaczynamy liczyć czas do następnego
         RozpocznijOdliczanieDoKlienta();
     }
 }
