@@ -1122,6 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientManager
   klientCalosc: {fileID: 605534931}
   obrazekGlowy: {fileID: 83537880}
+  guzikMaszyny: {fileID: 1444972935}
   przyciskKasy: {fileID: 161620513}
   obrazekKasy: {fileID: 161620514}
   monetyMalo: {fileID: -6237290801978298149, guid: 3baca35fd68f68b40bc189f25f3e7e89, type: 3}
