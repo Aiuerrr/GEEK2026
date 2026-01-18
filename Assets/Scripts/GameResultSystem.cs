@@ -3,44 +3,41 @@ using UnityEngine.SceneManagement;
 
 public class GameResultSystem : MonoBehaviour
 {
-    [Header("Balans Punktów")]
-    public float punktyZaCelnosc = 500f;
-    public float punktyZaSekunde = 10f;
+    [Header("Points Settings")]
+    public float pointsForAccuracy = 500f;
+    public float pointsForSecond = 10f;
 
-    [Header("Progi Wypłaty")]
-    public int progZloto = 600;
-    public int progSrebro = 300;
+    [Header("Sallary Thresholds")]
+    public int moneyThreshold = 600;
+    public int silverThreshold = 300;
 
-    public void ObliczWynikIKonczGre(float czasZostal, int liczbaBledow, int dlugoscTekstu, bool czyZdazylW_Czasie)
+    public void CountResults(float remainingTime, int numberOfErrors, int textLenght, bool onTime)
     {
-        int zarobioneMonety = 0;
+        int madeMoney = 0;
 
-        // 1. Czy czas się skończył?
-        if (!czyZdazylW_Czasie)
+        if (!onTime)
         {
-            zarobioneMonety = 0; // Wkurzony
+            madeMoney = 0;
         }
         else
         {
-            // --- MATEMATYKA ---
-            if (dlugoscTekstu == 0) dlugoscTekstu = 1; 
-            float celnosc = (float)(dlugoscTekstu - liczbaBledow) / dlugoscTekstu;
-            if (celnosc < 0) celnosc = 0;
+            if (textLenght == 0) textLenght = 1; 
+            float accuracy = (float)(textLenght - numberOfErrors) / textLenght;
+            if (accuracy < 0) accuracy = 0;
 
-            float wynikZJakoszi = celnosc * punktyZaCelnosc;
-            float wynikZCzasu = czasZostal * punktyZaSekunde;
-            float wynikKoncowy = wynikZJakoszi + wynikZCzasu;
+            float scoreForAccuracy = accuracy * pointsForAccuracy;
+            float scoreForTime = remainingTime * pointsForSecond;
+            float result = scoreForAccuracy + scoreForTime;
 
-            // --- PROGI ---
-            if (wynikKoncowy >= progZloto) zarobioneMonety = 100;      // Happy
-            else if (wynikKoncowy >= progSrebro) zarobioneMonety = 50; // Neutral
-            else zarobioneMonety = 25;                                 // Angry (bo słabo)
+
+            if (result >= moneyThreshold) madeMoney = 100;
+            else if (remainingTime >= silverThreshold) madeMoney = 50;
+            else madeMoney = 25;
         }
 
-        // --- ZAPIS I POWRÓT ---
-        ClientManager.WygraneMonety = zarobioneMonety;
-        ClientManager.WracamyZGry = true; // <--- NOWOŚĆ! Ważna flaga.
+        ClientManager.WonCoins = madeMoney;
+        ClientManager.ReturningFromGame = true;
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainGameScene");
     }
 }

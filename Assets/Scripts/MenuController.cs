@@ -3,30 +3,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [Header("Wrzuc tu obiekt menu_pauzy z hierarchii")]
-    public GameObject panelOpcji; // Nowa zmienna!
+    [Header("Options Panel")]
+    public GameObject optionsPanel;
 
     void Update()
     {
-        // Nasłuchiwanie klawisza ESC w każdej klatce
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (panelOpcji != null)
+            if (optionsPanel != null)
             {
-                // To jest sprytny trik:
-                // Sprawdź czy jest włączony. Jak tak -> wyłącz. Jak nie -> włącz.
-                // Wykrzyknik oznacza "zaprzeczenie".
-                panelOpcji.SetActive(!panelOpcji.activeSelf);
+                optionsPanel.SetActive(!optionsPanel.activeSelf);
             }
         }
     }
 
-    public void UruchomGre()
+    public void PlayGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("MainGameScene");
     }
 
-    public void WylaczGre()
+    public void ExitGame()
     {
         Application.Quit();
         Debug.Log("Wychodzenie z gry...");

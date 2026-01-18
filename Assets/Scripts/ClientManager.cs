@@ -1,213 +1,223 @@
 using UnityEngine;
-using UnityEngine.UI; // To ważne dla Buttona
+using UnityEngine.UI;
 using System.Collections;
 
 public class ClientManager : MonoBehaviour
 {
-    [Header("--- USTAWIENIA KLIENTA ---")]
-    public GameObject klientCalosc;
-    public Image obrazekGlowy;
+    [Header("--- Client Settings ---")]
+    public GameObject clientWhole;
+    public Image headImage;
     
-    [Header("--- INTERAKCJE ---")]
-    public Button guzikMaszyny;     // <--- NOWE: Tu wrzucisz przycisk maszyny
-    public GameObject przyciskKasy; 
-    public Image obrazekKasy;       
+    [Header("--- INTERACTIONS ---")]
+    public Button machineButton;
+    public GameObject cashButton; 
+    public Image cashImage;       
     
-    [Header("--- GRAFIKI MONET ---")]
-    public Sprite monetyMalo;
-    public Sprite monetySrednio;
-    public Sprite monetyDuzo;
+    [Header("--- COIN GRAPHICS ---")]
+    public Sprite coinsLarge;
+    public Sprite coinsMedium;
+    public Sprite coinsSmall;
 
-    [Header("--- GRAFIKI TWARZY ---")]
-    public Sprite glowaSzczesliwa;
-    public Sprite glowaSrednia;
-    public Sprite glowaZla;
+    [Header("--- FACE GRAPHICS ---")]
+    public Sprite headHappy;
+    public Sprite headNeutral;
+    public Sprite headAngry;
     
-    [Header("--- CZAS ---")]
-    public float czasDoPojawienia = 3.0f;
+    [Header("--- TIME ---")]
+    public float timeToAppear = 3.0f;
 
-    // --- ZMIENNE GLOBALNE ---
-    public static string TekstDoPrzepisania = ""; 
-    public static int WygraneMonety = 0;
-    public static int CalkowiteZloto = 0;
-    public static bool WracamyZGry = false;
+    // --- GLOBAL VARIABLES ---
+    public static string TextToCopy = ""; 
+    public static int WonCoins = 0;
+    public static int TotalGold = 0;
+    public static bool ReturningFromGame = false;
 
-    [Header("--- ANIMACJA ---")]
-    public float szybkoscWyskoku = 0.5f;
-    private Vector3 pozycjaStartowa;
-    private Vector3 pozycjaUkryta;
+    [Header("--- ANIMATION ---")]
+    public float jumpSpeed = 0.5f;
+    private Vector3 startPosition;
+    private Vector3 hiddenPosition;
 
     IEnumerator Start()
     {
-        // 1. Blokujemy maszynę na start (żeby nie klikać w powietrze)
-        if (guzikMaszyny != null) guzikMaszyny.interactable = false; // <--- NOWE
+        if (machineButton != null) machineButton.interactable = false;
 
-        // --- KONFIGURACJA POZYCJI ---
-        if (klientCalosc != null)
+        if (clientWhole != null)
         {
-            pozycjaStartowa = klientCalosc.transform.localPosition;
-            pozycjaUkryta = new Vector3(pozycjaStartowa.x, pozycjaStartowa.y - 800f, pozycjaStartowa.z);
+            startPosition = clientWhole.transform.localPosition;
+            hiddenPosition = new Vector3(startPosition.x, startPosition.y - 800f, startPosition.z);
         }
 
-        if (przyciskKasy != null) przyciskKasy.SetActive(false);
+        if (cashButton != null) cashButton.SetActive(false);
 
-        if (WracamyZGry)
+        if (ReturningFromGame)
         {
-            // --- SCENARIUSZ A: WRACAMY Z GRY ---
-            if (klientCalosc != null)
+            if (clientWhole != null)
             {
-                klientCalosc.transform.localPosition = pozycjaStartowa;
-                klientCalosc.SetActive(true);
+                clientWhole.transform.localPosition = startPosition;
+                clientWhole.SetActive(true);
             }
             
-            UstawMinePoWyniku();
+            SetFaceByResult();
 
-            if (WygraneMonety > 0)
+            if (WonCoins > 0)
             {
-                PokazKaseNaLadzie();
-                Debug.Log("💰 Klient położył kasę.");
+                ShowCashOnCounter();
+                Debug.Log("💰 Client placed cash.");
             }
             else
             {
-                Debug.Log("😡 Klient nic nie płaci i wychodzi.");
+                Debug.Log("😡 Client doesn't pay and leaves.");
                 yield return new WaitForSeconds(2.0f);
-                KlientSobieIdzie();
+                ClientLeaves();
             }
         }
         else
         {
-            // --- SCENARIUSZ B: STARTUJEMY OD ZERA ---
-            if (klientCalosc != null)
+            if (clientWhole != null)
             {
-                klientCalosc.transform.localPosition = pozycjaUkryta;
-                klientCalosc.SetActive(false);
+                clientWhole.transform.localPosition = hiddenPosition;
+                clientWhole.SetActive(false);
             }
-            RozpocznijOdliczanieDoKlienta();
+            StartCountdownToClient();
         }
     }
 
-    void PokazKaseNaLadzie()
+    void ShowCashOnCounter()
     {
-        if (przyciskKasy == null) return;
+        if (cashButton == null) return;
 
-        if (WygraneMonety >= 100)
+        if (WonCoins >= 100)
         {
-            obrazekKasy.sprite = monetyDuzo;
-            przyciskKasy.transform.localScale = Vector3.one;
+            cashImage.sprite = coinsLarge;
+            cashButton.transform.localScale = Vector3.one;
         }
-        else if (WygraneMonety >= 50)
+        else if (WonCoins >= 50)
         {
-            obrazekKasy.sprite = monetySrednio;
-            przyciskKasy.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+            cashImage.sprite = coinsMedium;
+            cashButton.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
         }
         else
         {
-            obrazekKasy.sprite = monetyMalo;
-            przyciskKasy.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            cashImage.sprite = coinsSmall;
+            cashButton.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
         }
-        przyciskKasy.SetActive(true); 
+        cashButton.SetActive(true); 
     }
 
-    public void PodniesKase()
+    public void PickUpCash()
     {
-        CalkowiteZloto += WygraneMonety;
-        Debug.Log($"💵 Podniosłeś {WygraneMonety}. Razem masz: {CalkowiteZloto}");
+        TotalGold += WonCoins;
+        Debug.Log($"💵 You picked up {WonCoins}. Total: {TotalGold}");
 
-        WygraneMonety = 0;
-        WracamyZGry = false;
+        WonCoins = 0;
+        ReturningFromGame = false;
 
-        przyciskKasy.SetActive(false);
-        KlientSobieIdzie();
+        cashButton.SetActive(false);
+        ClientLeaves();
     }
 
-    void KlientSobieIdzie()
+    void ClientLeaves()
     {
-        // Upewniamy się, że maszyna jest zablokowana jak klient wychodzi
-        if (guzikMaszyny != null) guzikMaszyny.interactable = false; // <--- NOWE
+        if (machineButton != null) machineButton.interactable = false;
 
-        Debug.Log("👋 Klient schodzi pod ladę.");
-        if (klientCalosc != null) StartCoroutine(AnimujWyjscie());
+        Debug.Log("👋 Client goes under the counter.");
+        if (clientWhole != null) StartCoroutine(AnimateExit());
     }
 
-    void RozpocznijOdliczanieDoKlienta()
+    void StartCountdownToClient()
     {
-        StartCoroutine(CzekajNaNowego());
+        StartCoroutine(WaitForNewClient());
     }
 
-    IEnumerator CzekajNaNowego()
+    IEnumerator WaitForNewClient()
     {
-        Debug.Log($"⏳ Czekam {czasDoPojawienia}s na nowego...");
-        yield return new WaitForSeconds(czasDoPojawienia);
-        GenerujNowegoKlienta();
+        Debug.Log($"⏳ Waiting {timeToAppear}s for new client...");
+        yield return new WaitForSeconds(timeToAppear);
+        GenerateNewClient();
     }
 
-    void UstawMinePoWyniku()
+    void SetFaceByResult()
     {
-        if (obrazekGlowy == null) return;
-        if (WygraneMonety >= 100) obrazekGlowy.sprite = glowaSzczesliwa;
-        else if (WygraneMonety >= 50) obrazekGlowy.sprite = glowaSrednia;
-        else obrazekGlowy.sprite = glowaZla;
+        if (headImage == null) return;
+        if (WonCoins >= 100) headImage.sprite = headHappy;
+        else if (WonCoins >= 50) headImage.sprite = headNeutral;
+        else headImage.sprite = headAngry;
     }
 
-    void GenerujNowegoKlienta()
+    void GenerateNewClient()
     {
-        if (klientCalosc != null) StartCoroutine(AnimujWejscie());
+        if (clientWhole != null) StartCoroutine(AnimateEntry());
 
-        if (glowaSrednia != null) obrazekGlowy.sprite = glowaSrednia;
-        TekstDoPrzepisania = GenerujBelkot(Random.Range(5, 10));
-        Debug.Log("🔔 Nowy klient!");
+        if (headNeutral != null) headImage.sprite = headNeutral;
+        TextToCopy = GenerateGibberish(Random.Range(5, 10));
+        Debug.Log("🔔 New client!");
     }
     
-    string GenerujBelkot(int ilosc)
+    string GenerateGibberish(int count)
     {
-        string belkot = "";
-        string[] sylaby = { "glar", "bo", "zump", "fiko", "tra", "xi", "mu", "ka", "bazz", "qo" };
-        for (int i = 0; i < ilosc; i++) belkot += sylaby[Random.Range(0, sylaby.Length)] + sylaby[Random.Range(0, sylaby.Length)] + " ";
-        return belkot.Trim();
+        string gibberish = "";
+        string[] syllables = { "glar", "bo", "zump", "fiko", "tra", "xi", "mu", "ka", "bazz", "qo" };
+        for (int i = 0; i < count; i++) gibberish += syllables[Random.Range(0, syllables.Length)] + syllables[Random.Range(0, syllables.Length)] + " ";
+        return gibberish.Trim();
     }
 
-    IEnumerator AnimujWejscie()
+    IEnumerator AnimateEntry()
+{
+    if (clientWhole == null) yield break;
+
+    float time = 0f;
+    clientWhole.SetActive(true);
+    while (time < jumpSpeed)
     {
-        if (klientCalosc == null) yield break;
+        time += Time.deltaTime;
+        float percent = time / jumpSpeed;
+        float t = Mathf.SmoothStep(0f, 1f, percent);
+        clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
+        yield return null;
+    }
+    clientWhole.transform.localPosition = startPosition;
 
-        float czas = 0f;
-        klientCalosc.SetActive(true);
+    if (machineButton != null) machineButton.interactable = true;
 
-        while (czas < szybkoscWyskoku)
+    TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
+    if (game != null)
+    {
+        game.StartGame(TextToCopy); 
+    }
+}
+
+    IEnumerator AnimateExit()
+    {
+        if (clientWhole == null) yield break;
+
+        float time = 0f;
+
+        while (time < jumpSpeed)
         {
-            czas += Time.deltaTime;
-            float procent = czas / szybkoscWyskoku;
-            float t = Mathf.SmoothStep(0f, 1f, procent);
+            time += Time.deltaTime;
+            float percent = time / jumpSpeed;
+            float t = Mathf.SmoothStep(0f, 1f, percent);
             
-            klientCalosc.transform.localPosition = Vector3.Lerp(pozycjaUkryta, pozycjaStartowa, t);
+            clientWhole.transform.localPosition = Vector3.Lerp(startPosition, hiddenPosition, t);
             
             yield return null;
         }
-        klientCalosc.transform.localPosition = pozycjaStartowa;
+        clientWhole.transform.localPosition = hiddenPosition;
+        clientWhole.SetActive(false);
 
-        // DOPIERO JAK CAŁKIEM WYSKOCZY - WŁĄCZAMY MASZYNĘ
-        if (guzikMaszyny != null) guzikMaszyny.interactable = true; // <--- NOWE
+        StartCountdownToClient();
     }
 
-    IEnumerator AnimujWyjscie()
+    public void OnMachineButtonClick()
+{
+    PaperController paper = FindFirstObjectByType<PaperController>();
+    
+    if (paper != null)
     {
-        if (klientCalosc == null) yield break;
-
-        float czas = 0f;
-
-        while (czas < szybkoscWyskoku)
-        {
-            czas += Time.deltaTime;
-            float procent = czas / szybkoscWyskoku;
-            float t = Mathf.SmoothStep(0f, 1f, procent);
-            
-            klientCalosc.transform.localPosition = Vector3.Lerp(pozycjaStartowa, pozycjaUkryta, t);
-            
-            yield return null;
-        }
-        klientCalosc.transform.localPosition = pozycjaUkryta;
-        klientCalosc.SetActive(false);
-
-        RozpocznijOdliczanieDoKlienta();
+        paper.SlideIn(TextToCopy);
     }
+    
+    if (machineButton != null) 
+        machineButton.interactable = false;
+}
 }

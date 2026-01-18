@@ -1,48 +1,59 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
-public class PauseManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
-    [Header("Przeciągnij tu obiekt PausePanel z Canvasa")]
-    public GameObject pauseMenuUI;
+    [Header("UI Settings")]
+    [SerializeField] private GameObject pauseMenuUI;
 
-    private bool isPaused = false;
+    [Header("Input Action Reference")]
+    [SerializeField] private InputActionReference pauseAction;
 
-    void Update()
+    private void OnEnable()
     {
-        // Jeśli wciśniesz ESC
-        if (Input.GetKeyDown(KeyCode.Escape))
+        pauseAction.action.performed += OnPausePerformed;
+        pauseAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pauseAction.action.performed -= OnPausePerformed;
+        pauseAction.action.Disable();
+    }
+
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        TogglePause();
+    }
+
+    public void TogglePause()
+    {
+        if (pauseMenuUI.activeSelf)
         {
-            if (isPaused)
-            {
-                WznowGre();
-            }
-            else
-            {
-                ZatrzymajGre();
-            }
+            ResumeGame();
+        }
+        else
+        {
+            StopGame();
         }
     }
 
-    public void WznowGre()
+    public void ResumeGame()
     {
-        pauseMenuUI.SetActive(false); // Ukryj panel
-        Time.timeScale = 1f;          // 1 = Normalny upływ czasu
-        isPaused = false;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    public void ZatrzymajGre()
+    public void StopGame()
     {
-        pauseMenuUI.SetActive(true); // Pokaż panel
-        Time.timeScale = 0f;         // 0 = Czas stoi w miejscu (ZAMRAŻANIE)
-        isPaused = true;
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    public void WyjdzDoMenu()
+    public void ReturnToMenu()
     {
-        // Bardzo ważne! Zanim wyjdziemy, musimy odmrozić czas.
-        // Inaczej w Menu nic by się nie ruszało, a po powrocie do gry nadal by stała.
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

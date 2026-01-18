@@ -1,43 +1,34 @@
 using UnityEngine;
-using UnityEngine.UI; // Potrzebne, żeby widzieć komponent Image
-using System.Collections; // Potrzebne do obsługi "czekania" (Korutyny)
+using UnityEngine.UI;
+using System.Collections;
 
 public class EasterEggController : MonoBehaviour
 {
     [Header("Ustawienia")]
-    public Image obrazekEasterEgga; // Tu wrzucimy komponent Image tego przycisku
-    public Sprite postacSpoczynek;  // Grafika "normalna"
-    public Sprite postacNacisnieta; // Grafika "aktywna"
-    public float czasTrwania = 3.0f; // Ile sekund ma trwać efekt (możesz zmienić w Inspectorze)
+    public Image easterEggImage;
+    public Sprite neutralImage;
+    public Sprite pressedImage;
+    public float duration = 3.0f;
 
-    private Coroutine licznikCzasu; // Zmienna pomocnicza do kontrolowania czasu
-
-    // Tę funkcję podepniemy pod kliknięcie przycisku
-    public void AktywujEasterEgg()
+    private Coroutine timerCoroutine;
+    public void ActivateEasterEgg()
     {
-        // 1. Natychmiast zmień obrazek na "naciśnięty"
-        obrazekEasterEgga.sprite = postacNacisnieta;
+        easterEggImage.sprite = pressedImage;
 
-        // 2. Jeśli jakiś licznik już odliczał (bo gracz klika jak szalony), zatrzymaj go
-        if (licznikCzasu != null)
+        if (timerCoroutine != null)
         {
-            StopCoroutine(licznikCzasu);
+            StopCoroutine(timerCoroutine);
         }
 
-        // 3. Uruchom nowe odliczanie
-        licznikCzasu = StartCoroutine(OdliczajICofnij());
+        timerCoroutine = StartCoroutine(CountAndReset());
     }
 
-    // To jest specjalna funkcja, która potrafi "czekać" w czasie gry
-    IEnumerator OdliczajICofnij()
+    IEnumerator CountAndReset()
     {
-        // Czekaj tyle sekund, ile ustawiliśmy w zmiennej 'czasTrwania'
-        yield return new WaitForSeconds(czasTrwania);
+        yield return new WaitForSeconds(duration);
 
-        // Po upływie czasu, przywróć normalny obrazek
-        obrazekEasterEgga.sprite = postacSpoczynek;
+        easterEggImage.sprite = neutralImage;
         
-        // Wyzeruj licznik
-        licznikCzasu = null;
+        timerCoroutine = null;
     }
 }

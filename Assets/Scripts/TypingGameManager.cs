@@ -17,7 +17,7 @@ public class TypingGameManager : MonoBehaviour
 
     [Header("Game Settings")]
     [TextArea(3, 10)]
-    public string textToType = "Przykładowy tekst awaryjny."; // Zostanie nadpisany przez ClientManager
+    public string textToType = "";
     public float initialTime = 60f;
 
     [Header("Visual Effects")]
@@ -34,38 +34,35 @@ public class TypingGameManager : MonoBehaviour
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
+    private GameResultSystem gameResultSystem;
 
-    // Dodana referencja do Sędziego
-    private GameResultSystem sędzia;
 
     void Start()
+{
+    gameResultSystem = FindFirstObjectByType<GameResultSystem>();
+    
+    if (uiElementToShake != null)
+        originalUiPos = uiElementToShake.anchoredPosition;
+
+    isGameActive = false; // Czekamy na sygnał od ClientManager
+}
+    
+    public void StartGame(string nowyTekst)
+{
+    if (string.IsNullOrEmpty(nowyTekst))
     {
-        // 1. Szukamy Sędziego na scenie (GameResultSystem)
-        sędzia = FindFirstObjectByType<GameResultSystem>();
-        if (sędzia == null) 
-            Debug.LogError("⚠️ BRAK GameResultSystem NA SCENIE! Dodaj go do obiektu _SYSTEM!");
-
-        // 2. Pobieramy tekst od Klienta (z Menu)
-        // Sprawdzamy, czy w ogóle przyszedł jakiś tekst (czy nie jest pusty)
-        if (!string.IsNullOrEmpty(ClientManager.TekstDoPrzepisania))
-        {
-            textToType = ClientManager.TekstDoPrzepisania;
-            Debug.Log("📥 Odebrano tekst od klienta: " + textToType);
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ Brak tekstu od klienta. Używam tekstu awaryjnego.");
-        }
-
-        // 3. Konfiguracja Shake Effect
-        if (uiElementToShake == null)
-            uiElementToShake = GetComponent<RectTransform>();
-
-        if (uiElementToShake != null)
-            originalUiPos = uiElementToShake.anchoredPosition;
-
-        StartGame();
+        Debug.LogError("⚠️ Próbowano uruchomić grę bez tekstu!");
+        return;
     }
+
+    textToType = nowyTekst;
+    currentTime = initialTime;
+    currentIndex = 0;
+    mistakes = 0;
+    isGameActive = true;
+
+    UpdateTextDisplay();
+}
 
     void OnEnable()
     {
@@ -97,12 +94,11 @@ public class TypingGameManager : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
-            EndGame(false); // Czas się skończył (false = porażka czasowa)
+            EndGame(false);
         }
 
         UpdateTimerUI();
 
-        // Miganie kursora
         blinkTimer += Time.deltaTime;
         if (blinkTimer >= cursorBlinkSpeed)
         {
@@ -123,7 +119,6 @@ public class TypingGameManager : MonoBehaviour
 
             if (c == expectedChar)
             {
-                // Poprawne
                 currentIndex++;
                 if (feedbackText) feedbackText.text = "";
 
@@ -133,7 +128,7 @@ public class TypingGameManager : MonoBehaviour
                 if (currentIndex >= textToType.Length)
                 {
                     UpdateTextDisplay();
-                    EndGame(true); // Sukces (true = zdążył)
+                    StartCoroutine(EndGame(true));
                 }
                 else
                 {
@@ -142,7 +137,6 @@ public class TypingGameManager : MonoBehaviour
             }
             else
             {
-                // Błąd
                 mistakes++;
                 if (feedbackText) feedbackText.text = "BŁĄD!";
 
@@ -189,19 +183,25 @@ public class TypingGameManager : MonoBehaviour
         if (timerText) timerText.text = $"Czas: {Mathf.CeilToInt(currentTime)}s";
     }
 
-    // ZMIENIONE: Funkcja kończąca grę teraz woła Sędziego
-    void EndGame(bool czyZdazyl)
+    IEnumerator EndGame(bool wasSuccessful)
     {
         isGameActive = false;
         isCursorVisible = false;
         UpdateTextDisplay();
         UpdateTimerUI();
 
-        if (sędzia != null)
+        PaperController paper = FindFirstObjectByType<PaperController>();
+        if (paper != null)
+        {
+            paper.SlideOut();
+            
+            yield return new WaitForSeconds(paper.duration);
+        }
+
+        if (gameResultSystem != null)
         {
             Debug.Log("🏁 Koniec gry! Wołam sędziego...");
-            // Przekazujemy dane do GameResultSystem
-            sędzia.ObliczWynikIKonczGre(currentTime, mistakes, textToType.Length, czyZdazyl);
+            gameResultSystem.CountResults(currentTime, mistakes, textToType.Length, wasSuccessful);
         }
         else
         {
