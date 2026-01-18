@@ -77,7 +77,7 @@ public class TitleScreenManager : MonoBehaviour
         switch (obecnyIndeks)
         {
             case 0: // PLAY
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("MainGameScene");
                 break;
             case 1: // OPTIONS
                 Debug.Log("Opcje...");
