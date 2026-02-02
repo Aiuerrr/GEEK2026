@@ -6,13 +6,9 @@ using System.Collections;
 public class TypingGameManager : MonoBehaviour
 {
     [Header("UI References")]
-    [Tooltip("Text element to display the target text.")]
     public TMP_Text textDisplay;
-    [Tooltip("Text element to display the remaining time.")]
     public TMP_Text timerText;
-    [Tooltip("Text element to display feedback (e.g., Error!).")]
     public TMP_Text feedbackText;
-    [Tooltip("Text element to display final stats.")]
     public TMP_Text statsText;
 
     [Header("Game Settings")]
@@ -34,35 +30,28 @@ public class TypingGameManager : MonoBehaviour
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
-    private GameResultSystem gameResultSystem;
-
 
     void Start()
-{
-    gameResultSystem = FindFirstObjectByType<GameResultSystem>();
-    
-    if (uiElementToShake != null)
-        originalUiPos = uiElementToShake.anchoredPosition;
+    {
+        if (uiElementToShake != null)
+            originalUiPos = uiElementToShake.anchoredPosition;
 
-    isGameActive = false; // Czekamy na sygnał od ClientManager
-}
+        isGameActive = false;
+    }
     
     public void StartGame(string nowyTekst)
-{
-    if (string.IsNullOrEmpty(nowyTekst))
     {
-        Debug.LogError("⚠️ Próbowano uruchomić grę bez tekstu!");
-        return;
+        if (string.IsNullOrEmpty(nowyTekst)) return;
+
+        textToType = nowyTekst;
+        currentTime = initialTime;
+        currentIndex = 0;
+        mistakes = 0;
+        isGameActive = true;
+
+        UpdateTextDisplay();
+        if (feedbackText) feedbackText.text = "";
     }
-
-    textToType = nowyTekst;
-    currentTime = initialTime;
-    currentIndex = 0;
-    mistakes = 0;
-    isGameActive = true;
-
-    UpdateTextDisplay();
-}
 
     void OnEnable()
     {
@@ -74,18 +63,6 @@ public class TypingGameManager : MonoBehaviour
         if (Keyboard.current != null) Keyboard.current.onTextInput -= OnTextInput;
     }
 
-    void StartGame()
-    {
-        currentTime = initialTime;
-        currentIndex = 0;
-        mistakes = 0;
-        isGameActive = true;
-
-        UpdateTextDisplay();
-        if (feedbackText) feedbackText.text = "";
-        if (statsText) statsText.text = "";
-    }
-
     void Update()
     {
         if (!isGameActive) return;
@@ -94,7 +71,7 @@ public class TypingGameManager : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
-            EndGame(false);
+            StartCoroutine(EndGame(false)); // Czas się skończył
         }
 
         UpdateTimerUI();
@@ -128,7 +105,7 @@ public class TypingGameManager : MonoBehaviour
                 if (currentIndex >= textToType.Length)
                 {
                     UpdateTextDisplay();
-                    StartCoroutine(EndGame(true));
+                    StartCoroutine(EndGame(true)); // Wygrana!
                 }
                 else
                 {
@@ -139,7 +116,6 @@ public class TypingGameManager : MonoBehaviour
             {
                 mistakes++;
                 if (feedbackText) feedbackText.text = "BŁĄD!";
-
                 StopAllCoroutines();
                 StartCoroutine(ShakeUI());
             }
@@ -190,22 +166,41 @@ public class TypingGameManager : MonoBehaviour
         UpdateTextDisplay();
         UpdateTimerUI();
 
+        // 1. Chowanie kartki
         PaperController paper = FindFirstObjectByType<PaperController>();
         if (paper != null)
         {
             paper.SlideOut();
-            
             yield return new WaitForSeconds(paper.duration);
         }
 
-        if (gameResultSystem != null)
+        // 2. Obliczanie wyniku (LOKALNIE, żeby nie psuć sceny)
+        int moneyToPay = 0;
+
+        if (!wasSuccessful)
         {
-            Debug.Log("🏁 Koniec gry! Wołam sędziego...");
-            gameResultSystem.CountResults(currentTime, mistakes, textToType.Length, wasSuccessful);
+            moneyToPay = 0; // Przegrana (czas)
         }
         else
         {
-            Debug.LogError("‼️ Koniec gry, ale nie ma Sędziego (GameResultSystem)! Nie mogę wrócić do menu.");
+            // Prosta matematyka: 
+            // 0 błędów = 100 zł
+            // 1-3 błędy = 50 zł
+            // Więcej = 25 zł
+            if (mistakes == 0) moneyToPay = 100;
+            else if (mistakes <= 3) moneyToPay = 50;
+            else moneyToPay = 25;
+        }
+
+        // 3. Przekazanie wyniku do ClientManagera
+        ClientManager client = FindFirstObjectByType<ClientManager>();
+        if (client != null)
+        {
+            client.JobFinished(moneyToPay);
+        }
+        else
+        {
+            Debug.LogError("CRITICAL: Nie znaleziono ClientManagera!");
         }
     }
 }

@@ -23,8 +23,10 @@ public class ClientManager : MonoBehaviour
     public Sprite headNeutral;
     public Sprite headAngry;
     
-    [Header("--- TIME ---")]
-    public float timeToAppear = 3.0f;
+    [Header("--- ANIMATION ---")]
+    public float jumpSpeed = 0.5f;
+    private Vector3 startPosition;
+    private Vector3 hiddenPosition;
 
     // --- GLOBAL VARIABLES ---
     public static string TextToCopy = ""; 
@@ -32,76 +34,94 @@ public class ClientManager : MonoBehaviour
     public static int TotalGold = 0;
     public static bool ReturningFromGame = false;
 
-    [Header("--- ANIMATION ---")]
-    public float jumpSpeed = 0.5f;
-    private Vector3 startPosition;
-    private Vector3 hiddenPosition;
-
     IEnumerator Start()
     {
+        // TYLKO KONFIGURACJA POCZĄTKOWA
         if (machineButton != null) machineButton.interactable = false;
 
         if (clientWhole != null)
         {
             startPosition = clientWhole.transform.localPosition;
             hiddenPosition = new Vector3(startPosition.x, startPosition.y - 800f, startPosition.z);
+            
+            // Chowamy klienta pod ladę na start
+            clientWhole.transform.localPosition = hiddenPosition;
+            clientWhole.SetActive(false);
         }
 
         if (cashButton != null) cashButton.SetActive(false);
-
-        if (ReturningFromGame)
-        {
-            if (clientWhole != null)
-            {
-                clientWhole.transform.localPosition = startPosition;
-                clientWhole.SetActive(true);
-            }
-            
-            SetFaceByResult();
-
-            if (WonCoins > 0)
-            {
-                ShowCashOnCounter();
-                Debug.Log("💰 Client placed cash.");
-            }
-            else
-            {
-                Debug.Log("😡 Client doesn't pay and leaves.");
-                yield return new WaitForSeconds(2.0f);
-                ClientLeaves();
-            }
-        }
-        else
-        {
-            if (clientWhole != null)
-            {
-                clientWhole.transform.localPosition = hiddenPosition;
-                clientWhole.SetActive(false);
-            }
-            StartCountdownToClient();
-        }
+        
+        yield return null;
     }
+
+    // --- KOMUNIKACJA Z GAME LOOP MANAGEREM ---
+    public void StartClientCycle()
+    {
+        GenerateNewClient();
+    }
+
+    // --- KOMUNIKACJA Z TYPING GAME MANAGEREM ---
+    // <--- NOWE: Tę funkcję wywoła gra w pisanie, gdy skończysz zadanie
+    public void JobFinished(int earnedMoney)
+    {
+        Debug.Log($"🏁 Klient otrzymał zlecenie. Zarobek: {earnedMoney}");
+        
+        WonCoins = earnedMoney;
+        ShowCashOnCounter();
+        SetFaceByResult();
+    }
+
+    void GenerateNewClient()
+    {
+        if (clientWhole != null) StartCoroutine(AnimateEntry());
+
+        if (headNeutral != null) headImage.sprite = headNeutral;
+        TextToCopy = GenerateGibberish(Random.Range(5, 10));
+        Debug.Log("🔔 New client!");
+    }
+
+    // --- INTERAKCJA Z KASĄ ---
 
     void ShowCashOnCounter()
     {
         if (cashButton == null) return;
 
-        if (WonCoins >= 100)
+        // Pokazujemy kasę tylko, jeśli zarobiliśmy cokolwiek
+        if (WonCoins > 0)
         {
-            cashImage.sprite = coinsLarge;
-            cashButton.transform.localScale = Vector3.one;
-        }
-        else if (WonCoins >= 50)
-        {
-            cashImage.sprite = coinsMedium;
-            cashButton.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+            if (WonCoins >= 100)
+            {
+                cashImage.sprite = coinsLarge;
+                cashButton.transform.localScale = Vector3.one;
+            }
+            else if (WonCoins >= 50)
+            {
+                cashImage.sprite = coinsMedium;
+                cashButton.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+            }
+            else
+            {
+                cashImage.sprite = coinsSmall;
+                cashButton.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            }
+            cashButton.SetActive(true);
         }
         else
         {
-            cashImage.sprite = coinsSmall;
-            cashButton.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            // Jeśli 0 zł, to od razu klient wychodzi (nie ma czego zbierać)
+            Debug.Log("😡 Klient nic nie płaci (0 zł) i wychodzi.");
+            StartCoroutine(WaitAndLeave());
         }
-        cashButton.SetActive(true); 
+    }
+
+    IEnumerator WaitAndLeave()
+    {
+        yield return new WaitForSeconds(2.0f);
+        // Powiadamiamy Managera, że runda stracona (0 zł), ale skończona
+        GameLoopManager loop = FindFirstObjectByType<GameLoopManager>();
+        if (loop != null) loop.EndRound();
+        
+        ClientLeaves();
     }
 
     public void PickUpCash()
@@ -114,29 +134,73 @@ public class ClientManager : MonoBehaviour
 
         cashButton.SetActive(false);
         ClientLeaves();
+
+        // Powiadom GameLoopManager, że runda skończona!
+        GameLoopManager loop = FindFirstObjectByType<GameLoopManager>();
+        if (loop != null)
+        {
+            loop.EndRound();
+        }
+        else
+        {
+            Debug.LogError("BRAK GameLoopManager na scenie!");
+        }
     }
 
     void ClientLeaves()
     {
         if (machineButton != null) machineButton.interactable = false;
-
-        Debug.Log("👋 Client goes under the counter.");
+        Debug.Log("👋 Client leaves.");
         if (clientWhole != null) StartCoroutine(AnimateExit());
     }
 
-    void StartCountdownToClient()
+    // --- ANIMACJE ---
+
+    IEnumerator AnimateEntry()
     {
-        StartCoroutine(WaitForNewClient());
+        if (clientWhole == null) yield break;
+
+        float time = 0f;
+        clientWhole.SetActive(true);
+        while (time < jumpSpeed)
+        {
+            time += Time.deltaTime;
+            float percent = time / jumpSpeed;
+            float t = Mathf.SmoothStep(0f, 1f, percent);
+            clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
+            yield return null;
+        }
+        clientWhole.transform.localPosition = startPosition;
+
+        if (machineButton != null) machineButton.interactable = true;
+
+        TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
+        if (game != null)
+        {
+            game.StartGame(TextToCopy); 
+        }
     }
 
-    IEnumerator WaitForNewClient()
+    IEnumerator AnimateExit()
     {
-        Debug.Log($"⏳ Waiting {timeToAppear}s for new client...");
-        yield return new WaitForSeconds(timeToAppear);
-        GenerateNewClient();
-    }
+        if (clientWhole == null) yield break;
 
-    void SetFaceByResult()
+        float time = 0f;
+        while (time < jumpSpeed)
+        {
+            time += Time.deltaTime;
+            float percent = time / jumpSpeed;
+            float t = Mathf.SmoothStep(0f, 1f, percent);
+            clientWhole.transform.localPosition = Vector3.Lerp(startPosition, hiddenPosition, t);
+            yield return null;
+        }
+        clientWhole.transform.localPosition = hiddenPosition;
+        clientWhole.SetActive(false);
+    }
+    
+    // --- UTILITIES ---
+
+    public void SetFaceByResult()
     {
         if (headImage == null) return;
         if (WonCoins >= 100) headImage.sprite = headHappy;
@@ -144,15 +208,6 @@ public class ClientManager : MonoBehaviour
         else headImage.sprite = headAngry;
     }
 
-    void GenerateNewClient()
-    {
-        if (clientWhole != null) StartCoroutine(AnimateEntry());
-
-        if (headNeutral != null) headImage.sprite = headNeutral;
-        TextToCopy = GenerateGibberish(Random.Range(5, 10));
-        Debug.Log("🔔 New client!");
-    }
-    
     string GenerateGibberish(int count)
     {
         string gibberish = "";
@@ -161,63 +216,10 @@ public class ClientManager : MonoBehaviour
         return gibberish.Trim();
     }
 
-    IEnumerator AnimateEntry()
-{
-    if (clientWhole == null) yield break;
-
-    float time = 0f;
-    clientWhole.SetActive(true);
-    while (time < jumpSpeed)
-    {
-        time += Time.deltaTime;
-        float percent = time / jumpSpeed;
-        float t = Mathf.SmoothStep(0f, 1f, percent);
-        clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
-        yield return null;
-    }
-    clientWhole.transform.localPosition = startPosition;
-
-    if (machineButton != null) machineButton.interactable = true;
-
-    TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
-    if (game != null)
-    {
-        game.StartGame(TextToCopy); 
-    }
-}
-
-    IEnumerator AnimateExit()
-    {
-        if (clientWhole == null) yield break;
-
-        float time = 0f;
-
-        while (time < jumpSpeed)
-        {
-            time += Time.deltaTime;
-            float percent = time / jumpSpeed;
-            float t = Mathf.SmoothStep(0f, 1f, percent);
-            
-            clientWhole.transform.localPosition = Vector3.Lerp(startPosition, hiddenPosition, t);
-            
-            yield return null;
-        }
-        clientWhole.transform.localPosition = hiddenPosition;
-        clientWhole.SetActive(false);
-
-        StartCountdownToClient();
-    }
-
     public void OnMachineButtonClick()
-{
-    PaperController paper = FindFirstObjectByType<PaperController>();
-    
-    if (paper != null)
     {
-        paper.SlideIn(TextToCopy);
+        PaperController paper = FindFirstObjectByType<PaperController>();
+        if (paper != null) paper.SlideIn(TextToCopy);
+        if (machineButton != null) machineButton.interactable = false;
     }
-    
-    if (machineButton != null) 
-        machineButton.interactable = false;
-}
 }
