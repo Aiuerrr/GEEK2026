@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro; 
-using System.Collections; // Potrzebne do IEnumerator (czekania)
+using System.Collections;
 
 public class GameLoopManager : MonoBehaviour
 {
@@ -11,38 +11,31 @@ public class GameLoopManager : MonoBehaviour
     public float rentMultiplier = 1.5f; 
 
     [Header("--- TIMING ---")]
-    public float delayBetweenRounds = 2.0f; // <--- NOWE: Czas przerwy między klientami
+    public float delayBetweenRounds = 2.0f; 
 
     [Header("--- UI ---")]
     public TextMeshProUGUI roundText; 
-    public GameObject gameOverPanel; 
-    public GameObject winPanel;   
+    
+    // <--- ZMIANA: Zamiast paneli, mamy kontroler ekranu końcowego
+    public EndScreenController endScreenController; 
 
     [Header("--- REFERENCES ---")]
     public ClientManager clientSystem; 
 
     private void Start()
     {
-        // Na start gry też dajmy chwilę oddechu, albo startujmy od razu
         StartNewRound();
     }
 
     public void StartNewRound()
     {
         Debug.Log($"🔵 STARTING ROUND: {currentRound}");
-        
         if (roundText != null) roundText.text = "Round: " + currentRound;
-
-        if (clientSystem != null)
-        {
-            clientSystem.StartClientCycle(); 
-        }
+        if (clientSystem != null) clientSystem.StartClientCycle(); 
     }
 
     public void EndRound()
     {
-        Debug.Log("🏁 Round ended.");
-
         if (currentRound % rentInterval == 0)
         {
             PayRent();
@@ -55,23 +48,29 @@ public class GameLoopManager : MonoBehaviour
 
     void PayRent()
     {
-        Debug.Log($"💸 RENT TIME! Need: {rentAmount}");
-
         int currentGold = ClientManager.TotalGold;
 
         if (currentGold >= rentAmount)
         {
             ClientManager.TotalGold -= rentAmount;
-            Debug.Log($"✅ Rent paid. Remaining: {ClientManager.TotalGold}");
+            
+            // <--- OPCJONALNIE: Tu możemy pokazać ekran sukcesu co czynsz (jeśli chcesz)
+            // Ale standardowo Endless Mode włącza się np. po 10 rundzie.
+            // Na razie zróbmy prosto: zapłacił -> gra dalej.
             
             rentAmount = Mathf.RoundToInt(rentAmount * rentMultiplier);
-            
             AdvanceRound();
         }
         else
         {
-            Debug.LogError("💀 GAME OVER - Can't pay rent!");
-            if (gameOverPanel != null) gameOverPanel.SetActive(true);
+            // PRZEGRANA (Brak kasy)
+            Debug.LogError("💀 GAME OVER - Brak kasy na czynsz!");
+            
+            if (endScreenController != null)
+            {
+                // false = przegrana
+                endScreenController.ShowEndScreen(false, currentRound, currentGold);
+            }
         }
     }
 
@@ -79,26 +78,29 @@ public class GameLoopManager : MonoBehaviour
     {
         currentRound++;
         
-        if (currentRound > 10)
+        // <--- LOGIKA WYGRANEJ (np. po 10 rundzie)
+        // Jeśli chcesz, żeby po 10 rundzie wyskoczył ekran "Gratulacje" z opcją Endless:
+        if (currentRound == 11) // Tu wpisz po której rundzie ma być "Win"
         {
-             Debug.Log("🏆 WIN! You survived 10 rounds.");
-             if (winPanel != null) winPanel.SetActive(true);
-             return;
+             Debug.Log("🏆 WYGRANA! Ale możesz grać dalej.");
+             if (endScreenController != null)
+             {
+                 // true = wygrana
+                 endScreenController.ShowEndScreen(true, currentRound, ClientManager.TotalGold);
+                 // Jak kliknie "Endless", panel zniknie i gra pójdzie dalej (kod poniżej WaitAndStart)
+             }
+             // Nie robimy return, bo jak zamknie panel, to coroutine i tak musi ruszyć
         }
 
-        // ZAMIAST OD RAZU STARTOWAĆ - CZEKAMY!
         StartCoroutine(WaitAndStartNewRound());
     }
 
-    // <--- NOWE: To jest ta poczekalnia
     IEnumerator WaitAndStartNewRound()
     {
-        Debug.Log($"⏳ Waiting {delayBetweenRounds}s for the next client...");
+        // Jeśli właśnie pokazaliśmy ekran końcowy, gra jest spauzowana (TimeScale = 0).
+        // Musimy poczekać, aż gracz kliknie "Endless" i odblokuje czas.
         
-        // Czekamy tyle sekund, ile ustawisz w Inspectorze
         yield return new WaitForSeconds(delayBetweenRounds);
-        
-        // Dopiero teraz wchodzi nowy
         StartNewRound();
     }
 }
