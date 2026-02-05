@@ -1296,7 +1296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &545910860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3227,9 +3227,9 @@ MonoBehaviour:
   rentInterval: 3
   rentAmount: 100
   rentMultiplier: 1.5
-  delayBetweenRounds: 3
+  delayBetweenRounds: 2
   roundText: {fileID: 0}
-  endScreenController: {fileID: 0}
+  endScreenController: {fileID: 545910861}
   clientSystem: {fileID: 1375206768}
 --- !u!4 &1786161254
 Transform:

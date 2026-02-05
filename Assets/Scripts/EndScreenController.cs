@@ -41,37 +41,46 @@ public class EndScreenController : MonoBehaviour
     public void ShowEndScreen(bool isWin, int round, int gold)
     {
         screenPanel.SetActive(true);
-        Time.timeScale = 0f; // Pauza gry
+        Time.timeScale = 0f;
 
-        // 1. RESET STANU (Przygotowanie sceny)
-        // Koperta schowana pod ekranem
+        // Reset animacji
         envelopeRect.anchoredPosition = new Vector2(0, offScreenY);
         envelopeRect.gameObject.SetActive(true);
-        
-        // Karta wyniku ukryta
         resultCardObj.SetActive(false);
 
-        // Ustawienie tekstów i grafik
+        // Ustawiamy statystyki (to masz podpięte, więc zadziała)
         statsText.text = $"Runda: {round}\nZłoto: {gold}";
 
         if (isWin)
         {
             resultCardImage.sprite = goodEndingSprite;
             titleText.text = "AWANS!";
-            titleText.color = new Color(0, 0.5f, 0); 
-            messageText.text = winMessage;
-            endlessButton.SetActive(true); 
+            titleText.color = new Color(0, 0.5f, 0);
+            
+            // --- ZABEZPIECZENIE PRZED BRAKIEM TEKSTU ---
+            // Kod wejdzie do środka TYLKO jeśli messageText jest podpięte
+            if (messageText != null) 
+            {
+                messageText.text = winMessage;
+            }
+            
+            endlessButton.SetActive(true);
         }
         else
         {
             resultCardImage.sprite = badEndingSprite;
             titleText.text = "ZWOLNIONY";
-            titleText.color = new Color(0.6f, 0, 0); 
-            messageText.text = loseMessage;
-            endlessButton.SetActive(false); 
+            titleText.color = new Color(0.6f, 0, 0);
+            
+            // --- ZABEZPIECZENIE PRZED BRAKIEM TEKSTU ---
+            if (messageText != null)
+            {
+                messageText.text = loseMessage;
+            }
+            
+            endlessButton.SetActive(false);
         }
 
-        // 2. Start wielkiej sekwencji
         StartCoroutine(FullSequenceRoutine());
     }
 
