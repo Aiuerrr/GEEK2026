@@ -41,8 +41,8 @@ public class ClientManager : MonoBehaviour
     };
 
     public string[] monsterDialogues = {
-        "Grrr...", "Mózg...", "Głodny...", "Pisz!", "Argh!", 
-        "Kwa kwa?", "Buuu!", "..." 
+        "Grrr...", "Ubongo...", "Kustahili...", "Andika!", "Argh!", 
+        "Kwa kwa?", "Habari", "..." 
     };
 
     [Header("--- HUMAN FEEDBACK (Ludzie) ---")]
@@ -51,9 +51,9 @@ public class ClientManager : MonoBehaviour
     public string[] humanBad = { "To jest skandal!", "Jedna gwiazdka w Google!", "Chcę rozmawiać z kierownikiem!", "To nie to, co chciałem!", "Nigdy więcej tu nie przyjdę." };
 
     [Header("--- MONSTER FEEDBACK (Potwory) ---")]
-    public string[] monsterGood = { "Mmm... pyszny papier...", "Dobre... nie zjem Cię.", "Hrr... (zadowolony pomruk)", "Szybkie mięso... dobre mięso.", "Zaniosę to do jaskini." };
-    public string[] monsterMedium = { "Grrr...", "Zmięte...", "Mogło być krwistsze...", "Ujdzie w tłoku.", "Hmpf." };
-    public string[] monsterBad = { "ROAR!!! (wściekłość)", "ZJEM CIĘ!!!", "GŁODNY!!!", "Zły papier! ZŁY!", "Ssss... (syczy groźnie)" };
+    public string[] monsterGood = { "Mmm... ladha...", "Nzuri!", "Hrr... Baridi", "Nafurahi!", "Shukrani!" };
+    public string[] monsterMedium = { "Grrr...", "Ilyokunjamana...", "labda damu...", "haraka intaodoka.", "Hmpf." };
+    public string[] monsterBad = { "Nina hasira ", "NITAKULA WEWE!!!", "NJA!!!", "MBAJA! MBAJA!"};
 
     [Header("--- INTERACTIONS ---")]
     public Button machineButton;
