@@ -146,6 +146,6 @@ public class EndScreenController : MonoBehaviour
     public void OnMenuClicked()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); 
+        SceneManager.LoadScene("MainMenuScene"); 
     }
 }

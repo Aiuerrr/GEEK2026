@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro; // Upewnij się, że masz to, jeśli używasz TextMeshPro w ClientVisuals, jeśli nie - usuń.
 
 public class ClientManager : MonoBehaviour
 {
@@ -12,27 +13,47 @@ public class ClientManager : MonoBehaviour
         public string nazwaPostaci;
         
         [Header("--- CZY TO STARY POTWÓR? ---")]
-        public bool toStaryPotwor; // <--- ZAZNACZ TO TYLKO DLA POTWORA Z TUTORIALA!
-        public Sprite cialoStaregoPotwora; // <--- Tu wrzuć CIAŁO (tylko jeśli zaznaczyłeś powyżej)
+        public bool toStaryPotwor; 
+        public Sprite cialoStaregoPotwora;
 
-        [Header("--- GRAFIKI (Dla nowych: Cała postać / Dla starego: Głowa) ---")]
+        [Header("--- GRAFIKI ---")]
         public Sprite neutralny;    
         public Sprite szczesliwy;   
         public Sprite zly;          
     }
-    // --------------------------------
 
     [Header("--- Client Settings ---")]
     public GameObject clientWhole;
     
     [Header("--- VISUALS ---")]
-    public Image bodyImageRenderer; // Główne miejsce wyświetlania (dla nowych: cała postać, dla starego: ciało)
-    public Image oldFloatingHeadImage; // Obiekt "Head" wewnątrz clientWhole
-    public GameObject oldFloatingHeadObject; // Ten sam obiekt, ale jako GameObject (żeby go włączać/wyłączać)
+    public Image bodyImageRenderer; 
+    public Image oldFloatingHeadImage; 
+    public GameObject oldFloatingHeadObject; 
 
     [Header("--- LISTY POSTACI ---")]
     public List<CharacterProfile> ludzie;
     public List<CharacterProfile> potwory;
+
+    [Header("--- DIALOGI (POWITANIA) ---")]
+    public string[] humanDialogues = {
+        "Dzień dobry!", "To pilne!", "Szef czeka...", "Tylko szybko.", 
+        "Ładna pogoda.", "Poproszę to.", "Dużo tego?", "Kawa stygnie."
+    };
+
+    public string[] monsterDialogues = {
+        "Grrr...", "Mózg...", "Głodny...", "Pisz!", "Argh!", 
+        "Kwa kwa?", "Buuu!", "..." 
+    };
+
+    [Header("--- HUMAN FEEDBACK (Ludzie) ---")]
+    public string[] humanGood = { "Dzięki, świetna robota!", "O to chodziło.", "Zostawię napiwek.", "Bardzo profesjonalnie.", "Uratowałeś mi życie!" };
+    public string[] humanMedium = { "Dzięki.", "Może być.", "Trochę długo...", "Następnym razem szybciej.", "Wezmę to." };
+    public string[] humanBad = { "To jest skandal!", "Jedna gwiazdka w Google!", "Chcę rozmawiać z kierownikiem!", "To nie to, co chciałem!", "Nigdy więcej tu nie przyjdę." };
+
+    [Header("--- MONSTER FEEDBACK (Potwory) ---")]
+    public string[] monsterGood = { "Mmm... pyszny papier...", "Dobre... nie zjem Cię.", "Hrr... (zadowolony pomruk)", "Szybkie mięso... dobre mięso.", "Zaniosę to do jaskini." };
+    public string[] monsterMedium = { "Grrr...", "Zmięte...", "Mogło być krwistsze...", "Ujdzie w tłoku.", "Hmpf." };
+    public string[] monsterBad = { "ROAR!!! (wściekłość)", "ZJEM CIĘ!!!", "GŁODNY!!!", "Zły papier! ZŁY!", "Ssss... (syczy groźnie)" };
 
     [Header("--- INTERACTIONS ---")]
     public Button machineButton;
@@ -56,18 +77,16 @@ public class ClientManager : MonoBehaviour
     public static bool ReturningFromGame = false;
     
     private CharacterProfile currentProfile; 
+    private bool czyToPotwor = false;
 
     private string[] humanSentences = {
-        "Dzien dobry poprosze o raport.",
-        "Musze wyslac ten wazny list.",
-        "Czy to biuro pisania?",
-        "Prosze przepisac to sprawozdanie.",
-        "Szybko szef na to czeka.",
-        "Mam nadzieje ze macie atrament."
+        "Dzien dobry poprosze o raport.", "Musze wyslac ten wazny list.", "Czy to biuro pisania?",
+        "Prosze przepisac to sprawozdanie.", "Szybko szef na to czeka.", "Mam nadzieje ze macie atrament."
     };
 
     IEnumerator Start()
     {
+        // 1. Blokujemy przycisk na start
         if (machineButton != null) machineButton.interactable = false;
 
         if (clientWhole != null)
@@ -75,6 +94,11 @@ public class ClientManager : MonoBehaviour
             startPosition = clientWhole.transform.localPosition;
             hiddenPosition = new Vector3(startPosition.x, startPosition.y - 800f, startPosition.z);
             clientWhole.transform.localPosition = hiddenPosition;
+            
+            // 2. NAPRAWA "HEJ!": Wyłączamy dymek od razu na starcie gry
+            ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+            if (visuals != null) visuals.HideBubble();
+
             clientWhole.SetActive(false);
         }
 
@@ -91,26 +115,26 @@ public class ClientManager : MonoBehaviour
     {
         Debug.Log($"🏁 Klient otrzymał zlecenie. Zarobek: {earnedMoney}");
         WonCoins = earnedMoney;
+        UpdateClientReaction(earnedMoney);
         ShowCashOnCounter();
         UpdateFaceEmotion();
     }
 
     void GenerateNewClient()
     {
-        // Domyślnie wyłączamy starą głowę
         if (oldFloatingHeadObject != null) oldFloatingHeadObject.SetActive(false);
 
-        int clientType = Random.Range(0, 2); 
+        int clientType = Random.Range(0, 2);
         if (ludzie.Count == 0) clientType = 1;
 
         if (clientType == 0)
         {
-            SetupCharacter(ludzie, true); 
+            SetupCharacter(ludzie, true);
             Debug.Log("🔔 New client! Type: HUMAN");
         }
         else
         {
-            SetupCharacter(potwory, false); 
+            SetupCharacter(potwory, false);
             Debug.Log("🔔 New client! Type: MONSTER");
         }
 
@@ -119,40 +143,25 @@ public class ClientManager : MonoBehaviour
 
     void SetupCharacter(List<CharacterProfile> lista, bool isHuman)
     {
+        czyToPotwor = !isHuman; // Zapamiętujemy kim jest postać
+
         if (lista.Count > 0)
         {
             currentProfile = lista[Random.Range(0, lista.Count)];
 
             if (currentProfile.toStaryPotwor)
             {
-                // --- LOGIKA DLA STAREGO POTWORA (HYBRYDA) ---
-                // 1. Włączamy oddzielną głowę
                 if (oldFloatingHeadObject != null) oldFloatingHeadObject.SetActive(true);
-                
-                // 2. Ciało ustawiamy na sztywno z pola "cialoStaregoPotwora"
                 if (bodyImageRenderer != null && currentProfile.cialoStaregoPotwora != null)
-                {
                     bodyImageRenderer.sprite = currentProfile.cialoStaregoPotwora;
-                    //bodyImageRenderer.SetNativeSize();
-                }
-
-                // 3. Twarz ustawiamy na "HeadImage" (tą lewitującą)
                 if (oldFloatingHeadImage != null && currentProfile.neutralny != null)
-                {
                     oldFloatingHeadImage.sprite = currentProfile.neutralny;
-                }
             }
             else
             {
-                // --- LOGIKA DLA NOWYCH POSTACI (JEDEN OBRAZEK) ---
-                // 1. Wyłączamy oddzielną głowę (już zrobione w GenerateNewClient)
-                
-                // 2. Ciało to po prostu "neutralny" sprite całej postaci
+                if (oldFloatingHeadObject != null) oldFloatingHeadObject.SetActive(false);
                 if (bodyImageRenderer != null && currentProfile.neutralny != null)
-                {
                     bodyImageRenderer.sprite = currentProfile.neutralny;
-                    //bodyImageRenderer.SetNativeSize();
-                }
             }
         }
 
@@ -160,11 +169,154 @@ public class ClientManager : MonoBehaviour
         else TextToCopy = GenerateGibberish(Random.Range(5, 10));
     }
 
+    // --- LOGIKA ANIMACJI WEJŚCIA (Z POPRAWKAMI) ---
+    IEnumerator AnimateEntry()
+    {
+        if (clientWhole == null) yield break;
+
+        // 1. BLOKADA PRZYCISKU (Naprawa błędu resetowania gry przez kliknięcie za wcześnie)
+        if (machineButton != null) machineButton.interactable = false;
+
+        // 2. START: Pokazujemy postać, ale UKRYWAMY dymek (Naprawa błędu "Hej!")
+        clientWhole.SetActive(true);
+        ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+        if (visuals != null) visuals.HideBubble(); 
+
+        // 3. ANIMACJA RUCHU
+        float time = 0f;
+        while (time < jumpSpeed)
+        {
+            time += Time.deltaTime;
+            float percent = time / jumpSpeed;
+            float t = Mathf.SmoothStep(0f, 1f, percent);
+            clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
+            yield return null;
+        }
+        
+        clientWhole.transform.localPosition = startPosition;
+
+        // 4. CZEKAMY (1 sekunda ciszy - szybciej)
+        yield return new WaitForSeconds(1.0f); 
+
+        // 5. GENERUJEMY TEKST I POKAZUJEMY DYMEK
+        if (visuals != null)
+        {
+            string randomText = "";
+            if (czyToPotwor) 
+                 randomText = monsterDialogues[Random.Range(0, monsterDialogues.Length)];
+            else
+                 randomText = humanDialogues[Random.Range(0, humanDialogues.Length)];
+
+            visuals.ShowBubble(randomText);
+        }
+
+        // 6. START GRY
+        TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
+        if (game != null) game.StartGame(TextToCopy);
+
+        // 7. ODBLOKOWANIE MASZYNY - Dopiero TERAZ pozwalamy graczowi kliknąć!
+        if (machineButton != null) machineButton.interactable = true; 
+    }
+
+    // --- LOGIKA ZBIERANIA KASY I WYJŚCIA ---
+    public void PickUpCash()
+    {
+        StartCoroutine(PickUpCashSequence());
+    }
+
+    IEnumerator PickUpCashSequence()
+    {
+        TotalGold += WonCoins;
+        WonCoins = 0;
+        ReturningFromGame = false;
+        cashButton.SetActive(false);
+
+        // Chowamy dymek
+        ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+        if (visuals != null) visuals.HideBubble();
+
+        // Ręczna animacja wyjścia
+        float time = 0f;
+        Vector3 currentPos = clientWhole.transform.localPosition;
+        
+        while (time < jumpSpeed)
+        {
+            time += Time.deltaTime;
+            float percent = time / jumpSpeed;
+            float t = percent * percent * (3f - 2f * percent); 
+            clientWhole.transform.localPosition = Vector3.Lerp(currentPos, hiddenPosition, t);
+            yield return null;
+        }
+
+        clientWhole.transform.localPosition = hiddenPosition;
+        clientWhole.SetActive(false);
+
+        // Pauza gry (Koniec Rundy)
+        GameLoopManager loop = FindFirstObjectByType<GameLoopManager>();
+        if (loop != null) loop.EndRound();
+    }
+
+    // --- AUTOMATYCZNE WYJŚCIE (np. jak gracz nic nie zrobi) ---
+    void ClientLeaves()
+    {
+        if (machineButton != null) machineButton.interactable = false;
+        if (clientWhole != null) StartCoroutine(AnimateExit());
+    }
+
+    IEnumerator AnimateExit()
+    {
+        // Ukrywamy dymek
+        ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+        if (visuals != null) visuals.HideBubble();
+
+        if (clientWhole == null) yield break;
+        
+        // Animacja wyjścia (taka sama jak w PickUpCash, ale bez pauzowania gry na końcu)
+        float time = 0f;
+        Vector3 currentPos = clientWhole.transform.localPosition;
+
+        while (time < jumpSpeed)
+        {
+            time += Time.deltaTime; 
+            float percent = time / jumpSpeed;
+            float t = Mathf.SmoothStep(0f, 1f, percent);
+            clientWhole.transform.localPosition = Vector3.Lerp(currentPos, hiddenPosition, t);
+            yield return null;
+        }
+
+        clientWhole.transform.localPosition = hiddenPosition;
+        clientWhole.SetActive(false);
+    }
+
+    // --- HELPERY I UI ---
+    void UpdateClientReaction(int money)
+    {
+        string reactionText = "";
+
+        if (czyToPotwor)
+        {
+            if (money >= 100) reactionText = monsterGood[Random.Range(0, monsterGood.Length)];
+            else if (money >= 50) reactionText = monsterMedium[Random.Range(0, monsterMedium.Length)];
+            else reactionText = monsterBad[Random.Range(0, monsterBad.Length)];
+        }
+        else
+        {
+            if (money >= 100) reactionText = humanGood[Random.Range(0, humanGood.Length)];
+            else if (money >= 50) reactionText = humanMedium[Random.Range(0, humanMedium.Length)];
+            else reactionText = humanBad[Random.Range(0, humanBad.Length)];
+        }
+
+        if (clientWhole != null)
+        {
+            ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+            if (visuals != null) visuals.ShowBubble(reactionText);
+        }
+    }
+
     void UpdateFaceEmotion()
     {
         if (currentProfile == null) return;
-
-        Sprite targetSprite = currentProfile.neutralny; // Domyślnie neutralny
+        Sprite targetSprite = currentProfile.neutralny; 
 
         if (WonCoins >= 100) targetSprite = currentProfile.szczesliwy;
         else if (WonCoins >= 50) targetSprite = currentProfile.neutralny;
@@ -172,20 +324,16 @@ public class ClientManager : MonoBehaviour
 
         if (targetSprite == null) return;
 
-        // Aplikujemy zmianę w odpowiednie miejsce
         if (currentProfile.toStaryPotwor)
         {
-            // Stary potwór -> Zmieniamy sprite na GŁOWIE
             if (oldFloatingHeadImage != null) oldFloatingHeadImage.sprite = targetSprite;
         }
         else
         {
-            // Nowa postać -> Zmieniamy CAŁE CIAŁO
             if (bodyImageRenderer != null) bodyImageRenderer.sprite = targetSprite;
         }
     }
 
-    // --- RESZTA FUNKCJI BEZ ZMIAN ---
     void ShowCashOnCounter()
     {
         if (cashButton == null) return;
@@ -211,61 +359,6 @@ public class ClientManager : MonoBehaviour
         ClientLeaves();
     }
 
-    public void PickUpCash()
-    {
-        TotalGold += WonCoins;
-        Debug.Log($"💵 You picked up {WonCoins}. Total: {TotalGold}");
-        WonCoins = 0;
-        ReturningFromGame = false;
-        cashButton.SetActive(false);
-        ClientLeaves();
-
-        GameLoopManager loop = FindFirstObjectByType<GameLoopManager>();
-        if (loop != null) loop.EndRound();
-    }
-
-    void ClientLeaves()
-    {
-        if (machineButton != null) machineButton.interactable = false;
-        if (clientWhole != null) StartCoroutine(AnimateExit());
-    }
-
-    IEnumerator AnimateEntry()
-    {
-        if (clientWhole == null) yield break;
-        float time = 0f;
-        clientWhole.SetActive(true);
-        while (time < jumpSpeed)
-        {
-            time += Time.deltaTime;
-            float percent = time / jumpSpeed;
-            float t = Mathf.SmoothStep(0f, 1f, percent);
-            clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
-            yield return null;
-        }
-        clientWhole.transform.localPosition = startPosition;
-        if (machineButton != null) machineButton.interactable = true;
-
-        TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
-        if (game != null) game.StartGame(TextToCopy);
-    }
-
-    IEnumerator AnimateExit()
-    {
-        if (clientWhole == null) yield break;
-        float time = 0f;
-        while (time < jumpSpeed)
-        {
-            time += Time.deltaTime;
-            float percent = time / jumpSpeed;
-            float t = Mathf.SmoothStep(0f, 1f, percent);
-            clientWhole.transform.localPosition = Vector3.Lerp(startPosition, hiddenPosition, t);
-            yield return null;
-        }
-        clientWhole.transform.localPosition = hiddenPosition;
-        clientWhole.SetActive(false);
-    }
-    
     string GenerateGibberish(int count)
     {
         string gibberish = "";
