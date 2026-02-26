@@ -23,6 +23,12 @@ public class PaperController : MonoBehaviour
 
     public void SlideIn(string textToType)
     {
+        // --- ZMIANA: Ustawiamy prawid³owy tekst ZANIM animacja ruszy ---
+        if (typingManager != null)
+        {
+            typingManager.PrepareTextToType(textToType);
+        }
+
         StopAllCoroutines();
         StartCoroutine(AnimateSlideIn(textToType));
     }

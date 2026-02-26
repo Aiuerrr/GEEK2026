@@ -5,11 +5,17 @@ using System.Collections;
 
 public class TypingGameManager : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("--- UI REFERENCES ---")]
     public TMP_Text textDisplay;
     public TMP_Text timerText;
     public TMP_Text feedbackText;
-    public TMP_Text statsText;
+
+    [Header("--- STATYSTYKI UI (DO PODPIĘCIA) ---")]
+    public TMP_Text wpmText;
+    public TMP_Text moneyText;
+    public TMP_Text paperText;
+    public TMP_Text inkText;
+    public TMP_Text clientNumberText;
 
     [Header("Game Settings")]
     [TextArea(3, 10)]
@@ -26,10 +32,14 @@ public class TypingGameManager : MonoBehaviour
     private int currentIndex;
     private int mistakes;
     private bool isGameActive;
-    
+
+    private int savedWPM = 0;
+
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
+
+    private GameLoopManager gameLoopManager;
 
     void Start()
     {
@@ -37,20 +47,37 @@ public class TypingGameManager : MonoBehaviour
             originalUiPos = uiElementToShake.anchoredPosition;
 
         isGameActive = false;
+
+        currentTime = initialTime;
+        savedWPM = 0;
+        UpdateTimerUI();
+
+        gameLoopManager = FindFirstObjectByType<GameLoopManager>();
     }
-    
+
+    // --- NOWA FUNKCJA DO RESETOWANIA SAMEGO WYGLĄDU ZEGARA ---
+    public void ResetTimerDisplay()
+    {
+        currentTime = initialTime;
+        UpdateTimerUI();
+    }
+
     public void StartGame(string nowyTekst)
     {
         if (string.IsNullOrEmpty(nowyTekst)) return;
 
         textToType = nowyTekst;
-        currentTime = initialTime;
+        currentTime = initialTime; // Dla pewności resetujemy też tutaj
         currentIndex = 0;
         mistakes = 0;
+        savedWPM = 0;
         isGameActive = true;
 
         UpdateTextDisplay();
+        UpdateTimerUI();
         if (feedbackText) feedbackText.text = "";
+
+        UpdateLiveStatsUI();
     }
 
     void OnEnable()
@@ -65,13 +92,15 @@ public class TypingGameManager : MonoBehaviour
 
     void Update()
     {
+        UpdateLiveStatsUI();
+
         if (!isGameActive) return;
 
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
         {
             currentTime = 0;
-            StartCoroutine(EndGame(false)); // Czas się skończył
+            StartCoroutine(EndGame(false));
         }
 
         UpdateTimerUI();
@@ -105,7 +134,8 @@ public class TypingGameManager : MonoBehaviour
                 if (currentIndex >= textToType.Length)
                 {
                     UpdateTextDisplay();
-                    StartCoroutine(EndGame(true)); // Wygrana!
+                    UpdateLiveStatsUI();
+                    StartCoroutine(EndGame(true));
                 }
                 else
                 {
@@ -119,6 +149,28 @@ public class TypingGameManager : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ShakeUI());
             }
+        }
+    }
+
+    void UpdateLiveStatsUI()
+    {
+        if (isGameActive)
+        {
+            float timeElapsedInSeconds = initialTime - currentTime;
+            if (timeElapsedInSeconds > 0)
+            {
+                float minutesElapsed = timeElapsedInSeconds / 60f;
+                savedWPM = Mathf.RoundToInt((currentIndex / 5f) / minutesElapsed);
+            }
+        }
+
+        if (wpmText != null) wpmText.text = $"{savedWPM}";
+        if (moneyText != null) moneyText.text = $"{ClientManager.TotalGold}";
+        if (paperText != null) paperText.text = $"{ClientManager.PaperCount}";
+        if (inkText != null) inkText.text = $"{ClientManager.InkCount} ({ClientManager.CurrentInkUses}/2)";
+        if (clientNumberText != null && gameLoopManager != null)
+        {
+            clientNumberText.text = $"{gameLoopManager.currentRound}";
         }
     }
 
@@ -146,7 +198,7 @@ public class TypingGameManager : MonoBehaviour
 
         string correctPart = textToType.Substring(0, currentIndex);
         string remainingPart = textToType.Substring(currentIndex);
-        
+
         string cursorTag = (isGameActive && isCursorVisible) ? "" : "<alpha=#00>";
         string cursor = $"<color=#000000>{cursorTag}|</color>";
 
@@ -156,7 +208,7 @@ public class TypingGameManager : MonoBehaviour
 
     void UpdateTimerUI()
     {
-        if (timerText) timerText.text = $"Czas: {Mathf.CeilToInt(currentTime)}s";
+        if (timerText) timerText.text = $"{Mathf.CeilToInt(currentTime)}";
     }
 
     IEnumerator EndGame(bool wasSuccessful)
@@ -166,7 +218,6 @@ public class TypingGameManager : MonoBehaviour
         UpdateTextDisplay();
         UpdateTimerUI();
 
-        // 1. Chowanie kartki
         PaperController paper = FindFirstObjectByType<PaperController>();
         if (paper != null)
         {
@@ -174,33 +225,35 @@ public class TypingGameManager : MonoBehaviour
             yield return new WaitForSeconds(paper.duration);
         }
 
-        // 2. Obliczanie wyniku (LOKALNIE, żeby nie psuć sceny)
         int moneyToPay = 0;
 
         if (!wasSuccessful)
         {
-            moneyToPay = 0; // Przegrana (czas)
+            moneyToPay = 0;
         }
         else
         {
-            // Prosta matematyka: 
-            // 0 błędów = 100 zł
-            // 1-3 błędy = 50 zł
-            // Więcej = 25 zł
             if (mistakes == 0) moneyToPay = 100;
             else if (mistakes <= 3) moneyToPay = 50;
             else moneyToPay = 25;
         }
 
-        // 3. Przekazanie wyniku do ClientManagera
         ClientManager client = FindFirstObjectByType<ClientManager>();
         if (client != null)
         {
             client.JobFinished(moneyToPay);
         }
-        else
-        {
-            Debug.LogError("CRITICAL: Nie znaleziono ClientManagera!");
-        }
+    }
+
+    // --- NOWA FUNKCJA: Wpisuje tekst na kartkę ZANIM zacznie się gra ---
+    public void PrepareTextToType(string nowyTekst)
+    {
+        if (string.IsNullOrEmpty(nowyTekst)) return;
+
+        textToType = nowyTekst;
+        currentIndex = 0;
+        isCursorVisible = false; // Kursor nie miga, dopóki kartka jedzie
+
+        UpdateTextDisplay();
     }
 }

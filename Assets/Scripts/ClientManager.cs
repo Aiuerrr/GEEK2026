@@ -75,7 +75,10 @@ public class ClientManager : MonoBehaviour
     public static int WonCoins = 0;
     public static int TotalGold = 0;
     public static bool ReturningFromGame = false;
-    
+    public static int PaperCount = 3;
+    public static int InkCount = 3;
+    public static int CurrentInkUses = 2; // Ile tekstów można jeszcze napisać na załadowanym tuszu
+
     private CharacterProfile currentProfile; 
     private bool czyToPotwor = false;
 
@@ -169,18 +172,21 @@ public class ClientManager : MonoBehaviour
         else TextToCopy = GenerateGibberish(Random.Range(5, 10));
     }
 
-    // --- LOGIKA ANIMACJI WEJŚCIA (Z POPRAWKAMI) ---
     IEnumerator AnimateEntry()
     {
         if (clientWhole == null) yield break;
 
-        // 1. BLOKADA PRZYCISKU (Naprawa błędu resetowania gry przez kliknięcie za wcześnie)
+        // 1. BLOKADA PRZYCISKU
         if (machineButton != null) machineButton.interactable = false;
 
-        // 2. START: Pokazujemy postać, ale UKRYWAMY dymek (Naprawa błędu "Hej!")
+        // --- ZMIANA: RESETUJEMY ZEGAR NA 60 JAK TYLKO KLIENT ZACZNIE WCHODZIĆ ---
+        TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
+        if (game != null) game.ResetTimerDisplay();
+
+        // 2. START: Pokazujemy postać, ale UKRYWAMY dymek
         clientWhole.SetActive(true);
         ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
-        if (visuals != null) visuals.HideBubble(); 
+        if (visuals != null) visuals.HideBubble();
 
         // 3. ANIMACJA RUCHU
         float time = 0f;
@@ -192,30 +198,26 @@ public class ClientManager : MonoBehaviour
             clientWhole.transform.localPosition = Vector3.Lerp(hiddenPosition, startPosition, t);
             yield return null;
         }
-        
+
         clientWhole.transform.localPosition = startPosition;
 
-        // 4. CZEKAMY (1 sekunda ciszy - szybciej)
-        yield return new WaitForSeconds(1.0f); 
+        // 4. CZEKAMY
+        yield return new WaitForSeconds(1.0f);
 
         // 5. GENERUJEMY TEKST I POKAZUJEMY DYMEK
         if (visuals != null)
         {
             string randomText = "";
-            if (czyToPotwor) 
-                 randomText = monsterDialogues[Random.Range(0, monsterDialogues.Length)];
+            if (czyToPotwor)
+                randomText = monsterDialogues[Random.Range(0, monsterDialogues.Length)];
             else
-                 randomText = humanDialogues[Random.Range(0, humanDialogues.Length)];
+                randomText = humanDialogues[Random.Range(0, humanDialogues.Length)];
 
             visuals.ShowBubble(randomText);
         }
 
-        // 6. START GRY
-        TypingGameManager game = FindFirstObjectByType<TypingGameManager>();
-        if (game != null) game.StartGame(TextToCopy);
-
-        // 7. ODBLOKOWANIE MASZYNY - Dopiero TERAZ pozwalamy graczowi kliknąć!
-        if (machineButton != null) machineButton.interactable = true; 
+        // 6. ODBLOKOWANIE MASZYNY - Dopiero TERAZ pozwalamy graczowi kliknąć!
+        if (machineButton != null) machineButton.interactable = true;
     }
 
     // --- LOGIKA ZBIERANIA KASY I WYJŚCIA ---
@@ -369,8 +371,36 @@ public class ClientManager : MonoBehaviour
 
     public void OnMachineButtonClick()
     {
-        PaperController paper = FindFirstObjectByType<PaperController>();
-        if (paper != null) paper.SlideIn(TextToCopy);
-        if (machineButton != null) machineButton.interactable = false;
+        // 1. Jeśli w maszynie skończył się tusz, a mamy w zapasach nową butelkę -> ładujemy!
+        if (CurrentInkUses <= 0 && InkCount > 0)
+        {
+            InkCount--;
+            CurrentInkUses = 2; // Otwieramy nową butelkę (starcza na 2 teksty)
+        }
+
+        // 2. Sprawdzamy, czy ostatecznie mamy i papier, i gotowy tusz w maszynie
+        if (PaperCount > 0 && CurrentInkUses > 0)
+        {
+            // Odejmujemy zasoby za bieżący tekst
+            PaperCount--;
+            CurrentInkUses--;
+
+            // Odpalamy grę
+            PaperController paper = FindFirstObjectByType<PaperController>();
+            if (paper != null) paper.SlideIn(TextToCopy);
+
+            if (machineButton != null) machineButton.interactable = false;
+
+            // Ukrywamy dymek klienta na czas pisania
+            ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+            if (visuals != null) visuals.HideBubble();
+        }
+        else
+        {
+            // Ostrzeżenie dla gracza, gdy nie ma zasobów
+            ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
+            if (visuals != null) visuals.ShowBubble("Brak papieru lub tuszu!\nOdwiedź sklep.");
+            Debug.LogWarning("Nie można pisać - brak zasobów!");
+        }
     }
 }
