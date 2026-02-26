@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class TitleScreenManager : MonoBehaviour
 {
+    [Header("--- PANELE ---")]
+    public GameObject optionsPanel; 
+
     [Header("--- ELEMENTY MENU ---")]
     public RectTransform[] opcjeMenu; 
     
@@ -11,15 +14,12 @@ public class TitleScreenManager : MonoBehaviour
     public RectTransform kursor;
     
     [Header("--- KOREKTY POZYCJI (Dla każdego osobno) ---")]
-    // To jest tablica, która pozwoli nam ustawić inne przesunięcie dla PLAY, a inne dla QUIT
-    // X = lewo/prawo, Y = góra/dół
     public Vector2[] korekty; 
 
     private int obecnyIndeks = 0;
 
     void Start()
     {
-        // Zabezpieczenie: jeśli zapomnisz ustawić korekty w Unity, skrypt sam je stworzy (same zera)
         if (korekty.Length != opcjeMenu.Length)
         {
             korekty = new Vector2[opcjeMenu.Length];
@@ -30,6 +30,11 @@ public class TitleScreenManager : MonoBehaviour
 
     void Update()
     {
+        // --- ZABEZPIECZENIE ---
+        // Jeśli panel opcji jest włączony, zatrzymaj ten skrypt.
+        // Dzięki temu kursor nie będzie jeździł w tle, jak jesteś w opcjach.
+        if (optionsPanel != null && optionsPanel.activeSelf) return;
+
         // --- NAWIGACJA ---
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -61,11 +66,8 @@ public class TitleScreenManager : MonoBehaviour
     {
         if (opcjeMenu[obecnyIndeks] == null) return;
 
-        // 1. Bierzemy pozycję wybranej opcji
         Vector3 nowaPozycja = opcjeMenu[obecnyIndeks].position;
         
-        // 2. Dodajemy unikalną korektę dla tego konkretnego elementu
-        // (np. dla PLAY dodamy -50, a dla QUIT -80)
         float poprawkaX = korekty[obecnyIndeks].x;
         float poprawkaY = korekty[obecnyIndeks].y;
 
@@ -80,7 +82,8 @@ public class TitleScreenManager : MonoBehaviour
                 SceneManager.LoadScene("MainGameScene");
                 break;
             case 1: // OPTIONS
-                Debug.Log("Opcje...");
+                // --- NOWE: Otwieramy panel zamiast pisać w logach ---
+                if (optionsPanel != null) optionsPanel.SetActive(true);
                 break;
             case 2: // CREDITS
                 Debug.Log("Autorzy...");
