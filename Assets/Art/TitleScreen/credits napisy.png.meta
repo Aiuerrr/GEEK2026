@@ -1,0 +1,3133 @@
+fileFormatVersion: 2
+guid: 4068066f07eceaf4a89cb16ed8af693d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6062708545791003139
+    second: credits napisy_0
+  - first:
+      213: 192515369649048620
+    second: credits napisy_1
+  - first:
+      213: 8921812574459605195
+    second: credits napisy_2
+  - first:
+      213: 2170319185562712517
+    second: credits napisy_3
+  - first:
+      213: -3278095262011442369
+    second: credits napisy_4
+  - first:
+      213: 6799472694477339832
+    second: credits napisy_5
+  - first:
+      213: -2226251681544620266
+    second: credits napisy_6
+  - first:
+      213: 2836323679822285059
+    second: credits napisy_7
+  - first:
+      213: 3605891886525672255
+    second: credits napisy_8
+  - first:
+      213: 5076458323189421258
+    second: credits napisy_9
+  - first:
+      213: -103618151943286894
+    second: credits napisy_10
+  - first:
+      213: 2108363544830818980
+    second: credits napisy_11
+  - first:
+      213: -1758352192428719321
+    second: credits napisy_12
+  - first:
+      213: 2902915302559278892
+    second: credits napisy_13
+  - first:
+      213: -2862509256913218858
+    second: credits napisy_14
+  - first:
+      213: 1424725990536208698
+    second: credits napisy_15
+  - first:
+      213: -7583168608009551226
+    second: credits napisy_16
+  - first:
+      213: -1869754015894303390
+    second: credits napisy_17
+  - first:
+      213: 227919401080675877
+    second: credits napisy_18
+  - first:
+      213: -1012222527163279324
+    second: credits napisy_19
+  - first:
+      213: 9138505517987828586
+    second: credits napisy_20
+  - first:
+      213: 7561586243735128265
+    second: credits napisy_21
+  - first:
+      213: -6750559875300710268
+    second: credits napisy_22
+  - first:
+      213: 9108790105909176074
+    second: credits napisy_23
+  - first:
+      213: -2027999920309723917
+    second: credits napisy_24
+  - first:
+      213: -6868255895786835801
+    second: credits napisy_25
+  - first:
+      213: -195958714304585713
+    second: credits napisy_26
+  - first:
+      213: -6770623787274599445
+    second: credits napisy_27
+  - first:
+      213: -6431784898227376330
+    second: credits napisy_28
+  - first:
+      213: -5299684991818890896
+    second: credits napisy_29
+  - first:
+      213: -4519590253955957081
+    second: credits napisy_30
+  - first:
+      213: -4618026512311635349
+    second: credits napisy_31
+  - first:
+      213: 3712615043286241095
+    second: credits napisy_32
+  - first:
+      213: 5709358544597881033
+    second: credits napisy_33
+  - first:
+      213: -4228317042413027928
+    second: credits napisy_34
+  - first:
+      213: -7092642014157688895
+    second: credits napisy_35
+  - first:
+      213: -4304472842688434347
+    second: credits napisy_36
+  - first:
+      213: 5908434904615622222
+    second: credits napisy_37
+  - first:
+      213: 7115647975202754865
+    second: credits napisy_38
+  - first:
+      213: -4418027213449520403
+    second: credits napisy_39
+  - first:
+      213: -4814145324367651502
+    second: credits napisy_40
+  - first:
+      213: 5980750524733130624
+    second: credits napisy_41
+  - first:
+      213: -2746462620971737602
+    second: credits napisy_42
+  - first:
+      213: 8936143675018145200
+    second: credits napisy_43
+  - first:
+      213: 932298875323638384
+    second: credits napisy_44
+  - first:
+      213: -1100321530104231270
+    second: credits napisy_45
+  - first:
+      213: -2628364322430069543
+    second: credits napisy_46
+  - first:
+      213: -2197920227424725332
+    second: credits napisy_47
+  - first:
+      213: -6675416168084272579
+    second: credits napisy_48
+  - first:
+      213: -2091223246535527700
+    second: credits napisy_49
+  - first:
+      213: 4961386072313330401
+    second: credits napisy_50
+  - first:
+      213: -516814241451947272
+    second: credits napisy_51
+  - first:
+      213: 6027698170225857342
+    second: credits napisy_52
+  - first:
+      213: -6519361256127008370
+    second: credits napisy_53
+  - first:
+      213: 7655027283004357977
+    second: credits napisy_54
+  - first:
+      213: 6216342384096917755
+    second: credits napisy_55
+  - first:
+      213: -5205309277151639811
+    second: credits napisy_56
+  - first:
+      213: 3305729609999138476
+    second: credits napisy_57
+  - first:
+      213: -6479715129900362343
+    second: credits napisy_58
+  - first:
+      213: 6856462223248934819
+    second: credits napisy_59
+  - first:
+      213: 7137059136640057614
+    second: credits napisy_60
+  - first:
+      213: -6167387174526057520
+    second: credits napisy_61
+  - first:
+      213: 2351971925571105998
+    second: credits napisy_62
+  - first:
+      213: -1339700416970300931
+    second: credits napisy_63
+  - first:
+      213: -4741703979594641220
+    second: credits napisy_64
+  - first:
+      213: -5155090061255902319
+    second: credits napisy_65
+  - first:
+      213: -4379959350479496076
+    second: credits napisy_66
+  - first:
+      213: -1567638036487160933
+    second: credits napisy_67
+  - first:
+      213: 2959097718147395225
+    second: credits napisy_68
+  - first:
+      213: 4487805664011736227
+    second: credits napisy_69
+  - first:
+      213: -524123859227783301
+    second: credits napisy_70
+  - first:
+      213: -3769799550500296311
+    second: credits napisy_71
+  - first:
+      213: -8109984183684455861
+    second: credits napisy_72
+  - first:
+      213: -8414356911721825001
+    second: credits napisy_73
+  - first:
+      213: 2186944960597281030
+    second: credits napisy_74
+  - first:
+      213: -6915980763892900830
+    second: credits napisy_75
+  - first:
+      213: -290575728007245934
+    second: credits napisy_76
+  - first:
+      213: 7160124976981414306
+    second: credits napisy_77
+  - first:
+      213: -3352482990205928964
+    second: credits napisy_78
+  - first:
+      213: 5173845369723648263
+    second: credits napisy_79
+  - first:
+      213: 799537187105954747
+    second: credits napisy_80
+  - first:
+      213: 4709142389672338460
+    second: credits napisy_81
+  - first:
+      213: -1578676494586110728
+    second: credits napisy_82
+  - first:
+      213: -7412134894548598564
+    second: credits napisy_83
+  - first:
+      213: 7750904684706183732
+    second: credits napisy_84
+  - first:
+      213: 613945951377840190
+    second: credits napisy_85
+  - first:
+      213: -5466120150066630382
+    second: credits napisy_86
+  - first:
+      213: -2586198686062028743
+    second: credits napisy_87
+  - first:
+      213: 2271504136806619659
+    second: credits napisy_88
+  - first:
+      213: 1289219033436969377
+    second: credits napisy_89
+  - first:
+      213: 1276022580118280865
+    second: credits napisy_90
+  - first:
+      213: 8561820421682554480
+    second: credits napisy_91
+  - first:
+      213: 1414044926881191853
+    second: credits napisy_92
+  - first:
+      213: -7059615053056048786
+    second: credits napisy_93
+  - first:
+      213: -9056759870498113726
+    second: credits napisy_94
+  - first:
+      213: 2558510877584150688
+    second: credits napisy_95
+  - first:
+      213: 1395293447964535827
+    second: credits napisy_96
+  - first:
+      213: -2498039791147179728
+    second: credits napisy_97
+  - first:
+      213: 9134927806702028615
+    second: credits napisy_98
+  - first:
+      213: -570469066862289858
+    second: credits napisy_99
+  - first:
+      213: 3867017998563956940
+    second: credits napisy_100
+  - first:
+      213: 6500301532644651453
+    second: credits napisy_101
+  - first:
+      213: -3715148163542763007
+    second: credits napisy_102
+  - first:
+      213: -7283060696826907922
+    second: credits napisy_103
+  - first:
+      213: -8608378613092557678
+    second: credits napisy_104
+  - first:
+      213: -1480505941817682758
+    second: credits napisy_105
+  - first:
+      213: -3746245357219831686
+    second: credits napisy_106
+  - first:
+      213: -3711978013805338508
+    second: credits napisy_107
+  - first:
+      213: 3118512911099090876
+    second: credits napisy_108
+  - first:
+      213: 6822167127327887941
+    second: credits napisy_109
+  - first:
+      213: -2463053408126992460
+    second: credits napisy_110
+  - first:
+      213: 1430016325145477468
+    second: credits napisy_111
+  - first:
+      213: -5800407265374668284
+    second: credits napisy_112
+  - first:
+      213: 6570866505867638727
+    second: credits napisy_113
+  - first:
+      213: -2148214440286830539
+    second: credits napisy_114
+  - first:
+      213: 5489120365878800463
+    second: credits napisy_115
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: credits napisy_0
+      rect:
+        serializedVersion: 2
+        x: 2877
+        y: 1491
+        width: 155
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df5f66ff2beecdba0800000000000000
+      internalID: -6062708545791003139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_1
+      rect:
+        serializedVersion: 2
+        x: 3045
+        y: 1531
+        width: 132
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c0cbd65b3fba200800000000000000
+      internalID: 192515369649048620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_2
+      rect:
+        serializedVersion: 2
+        x: 3223
+        y: 1679
+        width: 107
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc037454445a0db70800000000000000
+      internalID: 8921812574459605195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_3
+      rect:
+        serializedVersion: 2
+        x: 2393
+        y: 1273
+        width: 203
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c93ea8ecc58e1e10800000000000000
+      internalID: 2170319185562712517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_4
+      rect:
+        serializedVersion: 2
+        x: 2540
+        y: 1324
+        width: 186
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3bbaef2abdd182d0800000000000000
+      internalID: -3278095262011442369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_5
+      rect:
+        serializedVersion: 2
+        x: 2674
+        y: 1380
+        width: 171
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bc3a46f3649c5e50800000000000000
+      internalID: 6799472694477339832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_6
+      rect:
+        serializedVersion: 2
+        x: 2812
+        y: 1442
+        width: 113
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617baec04e3ca11e0800000000000000
+      internalID: -2226251681544620266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_7
+      rect:
+        serializedVersion: 2
+        x: 3408
+        y: 1374
+        width: 80
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30906dbfb55ac5720800000000000000
+      internalID: 2836323679822285059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_8
+      rect:
+        serializedVersion: 2
+        x: 3467
+        y: 1397
+        width: 79
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b63d2e093ba0230800000000000000
+      internalID: 3605891886525672255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_9
+      rect:
+        serializedVersion: 2
+        x: 3527
+        y: 1417
+        width: 74
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4d7ced2f3337640800000000000000
+      internalID: 5076458323189421258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_10
+      rect:
+        serializedVersion: 2
+        x: 3581
+        y: 1443
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29f432df6dfdf8ef0800000000000000
+      internalID: -103618151943286894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_11
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 1230
+        width: 155
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aa36033979624d10800000000000000
+      internalID: 2108363544830818980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_12
+      rect:
+        serializedVersion: 2
+        x: 3130
+        y: 1272
+        width: 82
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 723c1444ff31997e0800000000000000
+      internalID: -1758352192428719321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_13
+      rect:
+        serializedVersion: 2
+        x: 3197
+        y: 1300
+        width: 54
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27671e561a394820800000000000000
+      internalID: 2902915302559278892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_14
+      rect:
+        serializedVersion: 2
+        x: 3255
+        y: 1317
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d29b6f3ff25648d0800000000000000
+      internalID: -2862509256913218858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_15
+      rect:
+        serializedVersion: 2
+        x: 3286
+        y: 1327
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a316d286db4a5c310800000000000000
+      internalID: 1424725990536208698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_16
+      rect:
+        serializedVersion: 2
+        x: 3357
+        y: 1350
+        width: 67
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68282bf045c23c690800000000000000
+      internalID: -7583168608009551226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_17
+      rect:
+        serializedVersion: 2
+        x: 2137
+        y: 1239
+        width: 116
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d824101ac4d06e0800000000000000
+      internalID: -1869754015894303390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_18
+      rect:
+        serializedVersion: 2
+        x: 2935
+        y: 1184
+        width: 71
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e55dadc7bb92300800000000000000
+      internalID: 227919401080675877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_19
+      rect:
+        serializedVersion: 2
+        x: 2990
+        y: 1210
+        width: 46
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428d8ca79fcd3f1f0800000000000000
+      internalID: -1012222527163279324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_20
+      rect:
+        serializedVersion: 2
+        x: 3048
+        y: 1272
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a639c99c95e72de70800000000000000
+      internalID: 9138505517987828586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_21
+      rect:
+        serializedVersion: 2
+        x: 3086
+        y: 1255
+        width: 52
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c8005c20a620f860800000000000000
+      internalID: 7561586243735128265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_22
+      rect:
+        serializedVersion: 2
+        x: 2894
+        y: 1163
+        width: 49
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48822b53f813152a0800000000000000
+      internalID: -6750559875300710268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_23
+      rect:
+        serializedVersion: 2
+        x: 3062
+        y: 1240
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a072f44475ce86e70800000000000000
+      internalID: 9108790105909176074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_24
+      rect:
+        serializedVersion: 2
+        x: 2686
+        y: 1085
+        width: 75
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fc1b6931d81bd3e0800000000000000
+      internalID: -2027999920309723917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_25
+      rect:
+        serializedVersion: 2
+        x: 2742
+        y: 1105
+        width: 55
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a0b42107ad0fa0a0800000000000000
+      internalID: -6868255895786835801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_26
+      rect:
+        serializedVersion: 2
+        x: 2792
+        y: 1132
+        width: 51
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f00ab3b6690d74df0800000000000000
+      internalID: -195958714304585713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_27
+      rect:
+        serializedVersion: 2
+        x: 2825
+        y: 1145
+        width: 82
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be300bba989e902a0800000000000000
+      internalID: -6770623787274599445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_28
+      rect:
+        serializedVersion: 2
+        x: 3163
+        y: 1072
+        width: 80
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f6f6d46b5bdb6a0800000000000000
+      internalID: -6431784898227376330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_29
+      rect:
+        serializedVersion: 2
+        x: 3222
+        y: 1095
+        width: 79
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0718a21349cb376b0800000000000000
+      internalID: -5299684991818890896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_30
+      rect:
+        serializedVersion: 2
+        x: 3282
+        y: 1115
+        width: 74
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae33ae1c903741c0800000000000000
+      internalID: -4519590253955957081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_31
+      rect:
+        serializedVersion: 2
+        x: 3336
+        y: 1141
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b62345aba5979efb0800000000000000
+      internalID: -4618026512311635349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_32
+      rect:
+        serializedVersion: 2
+        x: 2512
+        y: 1014
+        width: 62
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f09da26bbd58330800000000000000
+      internalID: 3712615043286241095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_33
+      rect:
+        serializedVersion: 2
+        x: 2574
+        y: 1038
+        width: 82
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c0191ac857bb3f40800000000000000
+      internalID: 5709358544597881033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_34
+      rect:
+        serializedVersion: 2
+        x: 2650
+        y: 1060
+        width: 61
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8adbd317d000255c0800000000000000
+      internalID: -4228317042413027928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_35
+      rect:
+        serializedVersion: 2
+        x: 2952
+        y: 998
+        width: 54
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cfae13aaafd19d90800000000000000
+      internalID: -7092642014157688895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_36
+      rect:
+        serializedVersion: 2
+        x: 3010
+        y: 1015
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f6d3271c07344c0800000000000000
+      internalID: -4304472842688434347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_37
+      rect:
+        serializedVersion: 2
+        x: 3041
+        y: 1025
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e461224dd3afef150800000000000000
+      internalID: 5908434904615622222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_38
+      rect:
+        serializedVersion: 2
+        x: 3112
+        y: 1048
+        width: 67
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13110b4122cdfb260800000000000000
+      internalID: 7115647975202754865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_39
+      rect:
+        serializedVersion: 2
+        x: 2276
+        y: 908
+        width: 72
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea155638a300b2c0800000000000000
+      internalID: -4418027213449520403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_40
+      rect:
+        serializedVersion: 2
+        x: 2334
+        y: 931
+        width: 62
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d55fb7558b03db0800000000000000
+      internalID: -4814145324367651502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_41
+      rect:
+        serializedVersion: 2
+        x: 2377
+        y: 949
+        width: 77
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08703f43ae4eff250800000000000000
+      internalID: 5980750524733130624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_42
+      rect:
+        serializedVersion: 2
+        x: 2431
+        y: 975
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd57103cca92e9d0800000000000000
+      internalID: -2746462620971737602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_43
+      rect:
+        serializedVersion: 2
+        x: 2693
+        y: 882
+        width: 79
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd6f43a35f830c70800000000000000
+      internalID: 8936143675018145200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_44
+      rect:
+        serializedVersion: 2
+        x: 2755
+        y: 907
+        width: 43
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 072692833e030fc00800000000000000
+      internalID: 932298875323638384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_45
+      rect:
+        serializedVersion: 2
+        x: 2803
+        y: 970
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9a4c6be56fdab0f0800000000000000
+      internalID: -1100321530104231270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_46
+      rect:
+        serializedVersion: 2
+        x: 2841
+        y: 953
+        width: 52
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4de3d039c268bd0800000000000000
+      internalID: -2628364322430069543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_47
+      rect:
+        serializedVersion: 2
+        x: 2885
+        y: 970
+        width: 82
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca614bfb23b6f71e0800000000000000
+      internalID: -2197920227424725332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_48
+      rect:
+        serializedVersion: 2
+        x: 3168
+        y: 888
+        width: 65
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3a007dec582c53a0800000000000000
+      internalID: -6675416168084272579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_49
+      rect:
+        serializedVersion: 2
+        x: 3223
+        y: 911
+        width: 89
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce2f53c798b7af2e0800000000000000
+      internalID: -2091223246535527700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_50
+      rect:
+        serializedVersion: 2
+        x: 2181
+        y: 862
+        width: 51
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea7ec1a8526ad440800000000000000
+      internalID: 4961386072313330401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_51
+      rect:
+        serializedVersion: 2
+        x: 2233
+        y: 878
+        width: 62
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fac4638f28e3d8f0800000000000000
+      internalID: -516814241451947272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_52
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 844
+        width: 73
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e339599bc8fa6a350800000000000000
+      internalID: 6027698170225857342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_53
+      rect:
+        serializedVersion: 2
+        x: 2605
+        y: 931
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81fa168a739685a0800000000000000
+      internalID: -6519361256127008370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_54
+      rect:
+        serializedVersion: 2
+        x: 2655
+        y: 865
+        width: 48
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95df56d71ce1c3a60800000000000000
+      internalID: 7655027283004357977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_55
+      rect:
+        serializedVersion: 2
+        x: 2817
+        y: 938
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf83d467672e44650800000000000000
+      internalID: 6216342384096917755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_56
+      rect:
+        serializedVersion: 2
+        x: 3101
+        y: 852
+        width: 67
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df6c4559ac603c7b0800000000000000
+      internalID: -5205309277151639811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_57
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 763
+        width: 64
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae3d77d09f40ed20800000000000000
+      internalID: 3305729609999138476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_58
+      rect:
+        serializedVersion: 2
+        x: 2007
+        y: 788
+        width: 68
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995909c9b6d6316a0800000000000000
+      internalID: -6479715129900362343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_59
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 810
+        width: 78
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a743a0a01c072f50800000000000000
+      internalID: 6856462223248934819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_60
+      rect:
+        serializedVersion: 2
+        x: 2113
+        y: 837
+        width: 77
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e010364987deb0360800000000000000
+      internalID: 7137059136640057614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_61
+      rect:
+        serializedVersion: 2
+        x: 2409
+        y: 769
+        width: 54
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d3031e7a0a096aa0800000000000000
+      internalID: -6167387174526057520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_62
+      rect:
+        serializedVersion: 2
+        x: 2447
+        y: 782
+        width: 63
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec47b594102e3a020800000000000000
+      internalID: 2351971925571105998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_63
+      rect:
+        serializedVersion: 2
+        x: 2496
+        y: 801
+        width: 72
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1ea0d919d686de0800000000000000
+      internalID: -1339700416970300931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_64
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 830
+        width: 44
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0943a6a55123eb0800000000000000
+      internalID: -4741703979594641220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_65
+      rect:
+        serializedVersion: 2
+        x: 2822
+        y: 749
+        width: 63
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bf1b1f6e07578b0800000000000000
+      internalID: -5155090061255902319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_66
+      rect:
+        serializedVersion: 2
+        x: 2884
+        y: 766
+        width: 78
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cd4004d224733c0800000000000000
+      internalID: -4379959350479496076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_67
+      rect:
+        serializedVersion: 2
+        x: 2940
+        y: 793
+        width: 78
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9bbac2f281ae3ae0800000000000000
+      internalID: -1567638036487160933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_68
+      rect:
+        serializedVersion: 2
+        x: 3024
+        y: 825
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e28d952b3d01920800000000000000
+      internalID: 2959097718147395225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_69
+      rect:
+        serializedVersion: 2
+        x: 2173
+        y: 668
+        width: 55
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a4d7685973e74e30800000000000000
+      internalID: 4487805664011736227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_70
+      rect:
+        serializedVersion: 2
+        x: 2221
+        y: 683
+        width: 61
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7fcb608020f9b8f0800000000000000
+      internalID: -524123859227783301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_71
+      rect:
+        serializedVersion: 2
+        x: 2301
+        y: 717
+        width: 64
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 989a006384bfeabc0800000000000000
+      internalID: -3769799550500296311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_72
+      rect:
+        serializedVersion: 2
+        x: 2346
+        y: 739
+        width: 80
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b42a37d7a5c837f80800000000000000
+      internalID: -8109984183684455861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_73
+      rect:
+        serializedVersion: 2
+        x: 2666
+        y: 684
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71db77f48f23a3b80800000000000000
+      internalID: -8414356911721825001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_74
+      rect:
+        serializedVersion: 2
+        x: 2738
+        y: 709
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6094bbfcad6995e10800000000000000
+      internalID: 2186944960597281030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_75
+      rect:
+        serializedVersion: 2
+        x: 2793
+        y: 732
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c9abe33208500a0800000000000000
+      internalID: -6915980763892900830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_76
+      rect:
+        serializedVersion: 2
+        x: 3079
+        y: 658
+        width: 67
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29f07c73aeaa7fbf0800000000000000
+      internalID: -290575728007245934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_77
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 619
+        width: 64
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a111680bbfdd5360800000000000000
+      internalID: 7160124976981414306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_78
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 642
+        width: 73
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf97c3d8b769971d0800000000000000
+      internalID: -3352482990205928964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_79
+      rect:
+        serializedVersion: 2
+        x: 2514
+        y: 615
+        width: 83
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7097d2993f03dc740800000000000000
+      internalID: 5173845369723648263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_80
+      rect:
+        serializedVersion: 2
+        x: 2603
+        y: 694
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb5a26e5d6881b00800000000000000
+      internalID: 799537187105954747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_81
+      rect:
+        serializedVersion: 2
+        x: 3002
+        y: 619
+        width: 47
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c146725ad0c3a5140800000000000000
+      internalID: 4709142389672338460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_82
+      rect:
+        serializedVersion: 2
+        x: 3041
+        y: 630
+        width: 55
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc9fe4a71a671ae0800000000000000
+      internalID: -1578676494586110728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_83
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 605
+        width: 62
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd04727a59ec22990800000000000000
+      internalID: -7412134894548598564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_84
+      rect:
+        serializedVersion: 2
+        x: 2435
+        y: 584
+        width: 45
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ab2d3aebeb09b60800000000000000
+      internalID: 7750904684706183732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_85
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 600
+        width: 60
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e385a27079c258800800000000000000
+      internalID: 613945951377840190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_86
+      rect:
+        serializedVersion: 2
+        x: 2616
+        y: 656
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2117cab2fa07424b0800000000000000
+      internalID: -5466120150066630382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_87
+      rect:
+        serializedVersion: 2
+        x: 2930
+        y: 597
+        width: 66
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938d0be4ff9fb1cd0800000000000000
+      internalID: -2586198686062028743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_88
+      rect:
+        serializedVersion: 2
+        x: 2237
+        y: 504
+        width: 48
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a503c3af0068f10800000000000000
+      internalID: 2271504136806619659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_89
+      rect:
+        serializedVersion: 2
+        x: 2308
+        y: 532
+        width: 78
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a9dead51e934e110800000000000000
+      internalID: 1289219033436969377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_90
+      rect:
+        serializedVersion: 2
+        x: 2363
+        y: 555
+        width: 44
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aad355a6c755b110800000000000000
+      internalID: 1276022580118280865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_91
+      rect:
+        serializedVersion: 2
+        x: 2395
+        y: 564
+        width: 53
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 076e211af42b1d670800000000000000
+      internalID: 8561820421682554480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_92
+      rect:
+        serializedVersion: 2
+        x: 2746
+        y: 558
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da7523b7e52bf9310800000000000000
+      internalID: 1414044926881191853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_93
+      rect:
+        serializedVersion: 2
+        x: 2830
+        y: 539
+        width: 65
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61089f3385370e90800000000000000
+      internalID: -7059615053056048786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_94
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 570
+        width: 82
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24772fee1ecef4280800000000000000
+      internalID: -9056759870498113726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_95
+      rect:
+        serializedVersion: 2
+        x: 3302
+        y: 494
+        width: 88
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a0506c6618a18320800000000000000
+      internalID: 2558510877584150688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_96
+      rect:
+        serializedVersion: 2
+        x: 2076
+        y: 438
+        width: 55
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c2b539ff31d5310800000000000000
+      internalID: 1395293447964535827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_97
+      rect:
+        serializedVersion: 2
+        x: 2131
+        y: 459
+        width: 47
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031a1ed8b0e255dd0800000000000000
+      internalID: -2498039791147179728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_98
+      rect:
+        serializedVersion: 2
+        x: 2163
+        y: 469
+        width: 70
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7470057f078c5ce70800000000000000
+      internalID: 9134927806702028615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_99
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 491
+        width: 47
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c135af7694518f0800000000000000
+      internalID: -570469066862289858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_100
+      rect:
+        serializedVersion: 2
+        x: 2575
+        y: 441
+        width: 67
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc85270a1686aa530800000000000000
+      internalID: 3867017998563956940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_101
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 463
+        width: 70
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1363acdc5b53a50800000000000000
+      internalID: 6500301532644651453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_102
+      rect:
+        serializedVersion: 2
+        x: 2685
+        y: 488
+        width: 49
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10ab610dd64217cc0800000000000000
+      internalID: -3715148163542763007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_103
+      rect:
+        serializedVersion: 2
+        x: 2760
+        y: 521
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2f50032ee5dea90800000000000000
+      internalID: -7283060696826907922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_104
+      rect:
+        serializedVersion: 2
+        x: 3190
+        y: 425
+        width: 93
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c5c82b245e88880800000000000000
+      internalID: -8608378613092557678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_105
+      rect:
+        serializedVersion: 2
+        x: 2343
+        y: 342
+        width: 67
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab41a12a0bf247be0800000000000000
+      internalID: -1480505941817682758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_106
+      rect:
+        serializedVersion: 2
+        x: 2451
+        y: 386
+        width: 49
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70a47132b9a20cc0800000000000000
+      internalID: -3746245357219831686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_107
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 408
+        width: 42
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470a211d9a76c7cc0800000000000000
+      internalID: -3711978013805338508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_108
+      rect:
+        serializedVersion: 2
+        x: 2531
+        y: 419
+        width: 59
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7d78558fe274b20800000000000000
+      internalID: 3118512911099090876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_109
+      rect:
+        serializedVersion: 2
+        x: 3014
+        y: 340
+        width: 69
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 542d9be5bd43dae50800000000000000
+      internalID: 6822167127327887941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_110
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 365
+        width: 79
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bf76c1a9f971ddd0800000000000000
+      internalID: -2463053408126992460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_111
+      rect:
+        serializedVersion: 2
+        x: 3146
+        y: 406
+        width: 65
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c514e4b654078d310800000000000000
+      internalID: 1430016325145477468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_112
+      rect:
+        serializedVersion: 2
+        x: 2139
+        y: 272
+        width: 68
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a7fb2f250d08fa0800000000000000
+      internalID: -5800407265374668284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_113
+      rect:
+        serializedVersion: 2
+        x: 2194
+        y: 293
+        width: 63
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c7b0cce548603b50800000000000000
+      internalID: 6570866505867638727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_114
+      rect:
+        serializedVersion: 2
+        x: 2250
+        y: 305
+        width: 77
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 530c65929520032e0800000000000000
+      internalID: -2148214440286830539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: credits napisy_115
+      rect:
+        serializedVersion: 2
+        x: 2302
+        y: 332
+        width: 44
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f407191e3e54d2c40800000000000000
+      internalID: 5489120365878800463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      credits napisy_0: -6062708545791003139
+      credits napisy_1: 192515369649048620
+      credits napisy_10: -103618151943286894
+      credits napisy_100: 3867017998563956940
+      credits napisy_101: 6500301532644651453
+      credits napisy_102: -3715148163542763007
+      credits napisy_103: -7283060696826907922
+      credits napisy_104: -8608378613092557678
+      credits napisy_105: -1480505941817682758
+      credits napisy_106: -3746245357219831686
+      credits napisy_107: -3711978013805338508
+      credits napisy_108: 3118512911099090876
+      credits napisy_109: 6822167127327887941
+      credits napisy_11: 2108363544830818980
+      credits napisy_110: -2463053408126992460
+      credits napisy_111: 1430016325145477468
+      credits napisy_112: -5800407265374668284
+      credits napisy_113: 6570866505867638727
+      credits napisy_114: -2148214440286830539
+      credits napisy_115: 5489120365878800463
+      credits napisy_12: -1758352192428719321
+      credits napisy_13: 2902915302559278892
+      credits napisy_14: -2862509256913218858
+      credits napisy_15: 1424725990536208698
+      credits napisy_16: -7583168608009551226
+      credits napisy_17: -1869754015894303390
+      credits napisy_18: 227919401080675877
+      credits napisy_19: -1012222527163279324
+      credits napisy_2: 8921812574459605195
+      credits napisy_20: 9138505517987828586
+      credits napisy_21: 7561586243735128265
+      credits napisy_22: -6750559875300710268
+      credits napisy_23: 9108790105909176074
+      credits napisy_24: -2027999920309723917
+      credits napisy_25: -6868255895786835801
+      credits napisy_26: -195958714304585713
+      credits napisy_27: -6770623787274599445
+      credits napisy_28: -6431784898227376330
+      credits napisy_29: -5299684991818890896
+      credits napisy_3: 2170319185562712517
+      credits napisy_30: -4519590253955957081
+      credits napisy_31: -4618026512311635349
+      credits napisy_32: 3712615043286241095
+      credits napisy_33: 5709358544597881033
+      credits napisy_34: -4228317042413027928
+      credits napisy_35: -7092642014157688895
+      credits napisy_36: -4304472842688434347
+      credits napisy_37: 5908434904615622222
+      credits napisy_38: 7115647975202754865
+      credits napisy_39: -4418027213449520403
+      credits napisy_4: -3278095262011442369
+      credits napisy_40: -4814145324367651502
+      credits napisy_41: 5980750524733130624
+      credits napisy_42: -2746462620971737602
+      credits napisy_43: 8936143675018145200
+      credits napisy_44: 932298875323638384
+      credits napisy_45: -1100321530104231270
+      credits napisy_46: -2628364322430069543
+      credits napisy_47: -2197920227424725332
+      credits napisy_48: -6675416168084272579
+      credits napisy_49: -2091223246535527700
+      credits napisy_5: 6799472694477339832
+      credits napisy_50: 4961386072313330401
+      credits napisy_51: -516814241451947272
+      credits napisy_52: 6027698170225857342
+      credits napisy_53: -6519361256127008370
+      credits napisy_54: 7655027283004357977
+      credits napisy_55: 6216342384096917755
+      credits napisy_56: -5205309277151639811
+      credits napisy_57: 3305729609999138476
+      credits napisy_58: -6479715129900362343
+      credits napisy_59: 6856462223248934819
+      credits napisy_6: -2226251681544620266
+      credits napisy_60: 7137059136640057614
+      credits napisy_61: -6167387174526057520
+      credits napisy_62: 2351971925571105998
+      credits napisy_63: -1339700416970300931
+      credits napisy_64: -4741703979594641220
+      credits napisy_65: -5155090061255902319
+      credits napisy_66: -4379959350479496076
+      credits napisy_67: -1567638036487160933
+      credits napisy_68: 2959097718147395225
+      credits napisy_69: 4487805664011736227
+      credits napisy_7: 2836323679822285059
+      credits napisy_70: -524123859227783301
+      credits napisy_71: -3769799550500296311
+      credits napisy_72: -8109984183684455861
+      credits napisy_73: -8414356911721825001
+      credits napisy_74: 2186944960597281030
+      credits napisy_75: -6915980763892900830
+      credits napisy_76: -290575728007245934
+      credits napisy_77: 7160124976981414306
+      credits napisy_78: -3352482990205928964
+      credits napisy_79: 5173845369723648263
+      credits napisy_8: 3605891886525672255
+      credits napisy_80: 799537187105954747
+      credits napisy_81: 4709142389672338460
+      credits napisy_82: -1578676494586110728
+      credits napisy_83: -7412134894548598564
+      credits napisy_84: 7750904684706183732
+      credits napisy_85: 613945951377840190
+      credits napisy_86: -5466120150066630382
+      credits napisy_87: -2586198686062028743
+      credits napisy_88: 2271504136806619659
+      credits napisy_89: 1289219033436969377
+      credits napisy_9: 5076458323189421258
+      credits napisy_90: 1276022580118280865
+      credits napisy_91: 8561820421682554480
+      credits napisy_92: 1414044926881191853
+      credits napisy_93: -7059615053056048786
+      credits napisy_94: -9056759870498113726
+      credits napisy_95: 2558510877584150688
+      credits napisy_96: 1395293447964535827
+      credits napisy_97: -2498039791147179728
+      credits napisy_98: 9134927806702028615
+      credits napisy_99: -570469066862289858
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
