@@ -75,14 +75,7 @@ public class TitleScreenManager : MonoBehaviour
         switch (obecnyIndeks)
         {
             case 0:
-                if (SceneFader.Instance != null)
-                {
-                    SceneFader.Instance.FadeToScene("CutsceneScene");
-                }
-                else
-                {
-                    SceneManager.LoadScene("CutsceneScene");
-                }
+                SceneManager.LoadScene("MainGameScene");
                 break;
             case 1:
                 if (optionsPanel != null) optionsPanel.SetActive(true);
