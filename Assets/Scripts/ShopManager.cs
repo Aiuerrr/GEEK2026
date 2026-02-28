@@ -112,6 +112,9 @@ public class ShopManager : MonoBehaviour
     {
         if (PauseMenu.isCountingDown) return;
 
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxShopBuy);
+
         if (ClientManager.TotalGold >= singlePaperPrice)
         {
             ClientManager.TotalGold -= singlePaperPrice;
@@ -123,6 +126,9 @@ public class ShopManager : MonoBehaviour
     public void BuyBundlePaper()
     {
         if (PauseMenu.isCountingDown) return;
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxShopBuy);
 
         if (ClientManager.TotalGold >= bundlePaperPrice)
         {
@@ -136,6 +142,9 @@ public class ShopManager : MonoBehaviour
     {
         if (PauseMenu.isCountingDown) return;
 
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxShopBuy);
+
         if (ClientManager.TotalGold >= singleInkPrice)
         {
             ClientManager.TotalGold -= singleInkPrice;
@@ -147,6 +156,9 @@ public class ShopManager : MonoBehaviour
     public void BuyBundleInk()
     {
         if (PauseMenu.isCountingDown) return;
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxShopBuy);
 
         if (ClientManager.TotalGold >= bundleInkPrice)
         {

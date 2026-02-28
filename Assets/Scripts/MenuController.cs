@@ -15,11 +15,13 @@ public class MenuController : MonoBehaviour
 
     public void PlayGame()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
         SceneManager.LoadScene("MainGameScene");
     }
 
     public void ExitGame()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
         Application.Quit();
     }
 }

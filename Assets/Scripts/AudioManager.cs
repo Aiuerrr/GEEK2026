@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxMoneyCollected;
     public AudioClip sfxButtonClicked;
     public AudioClip sfxShopBuy;
+    public AudioClip sfxMistake;
+
 
 
     private void Awake()

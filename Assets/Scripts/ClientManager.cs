@@ -11,53 +11,53 @@ public class ClientManager : MonoBehaviour
     {
         public string nazwaPostaci;
         
-        [Header("--- CZY TO STARY POTWÓR? ---")]
+        [Header("CZY TO STARY POTWÓR?")]
         public bool toStaryPotwor; 
         public Sprite cialoStaregoPotwora;
 
-        [Header("--- GRAFIKI ---")]
+        [Header("GRAFIKI")]
         public Sprite neutralny;    
         public Sprite szczesliwy;   
         public Sprite zly;          
     }
 
-    [Header("--- Client Settings ---")]
+    [Header("Client Settings")]
     public GameObject clientWhole;
     
-    [Header("--- VISUALS ---")]
+    [Header("VISUALS")]
     public Image bodyImageRenderer; 
     public Image oldFloatingHeadImage; 
     public GameObject oldFloatingHeadObject; 
 
-    [Header("--- LISTY POSTACI ---")]
+    [Header("LISTY POSTACI")]
     public List<CharacterProfile> ludzie;
     public List<CharacterProfile> potwory;
 
-    [Header("--- DIALOGI (POWITANIA) ---")]
+    [Header("DIALOGI")]
     public string[] humanDialogues;
     public string[] monsterDialogues;
 
-    [Header("--- HUMAN FEEDBACK (Ludzie) ---")]
+    [Header("HUMAN FEEDBACK")]
     public string[] humanGood;
     public string[] humanMedium;
     public string[] humanBad;
 
-    [Header("--- MONSTER FEEDBACK (Potwory) ---")]
+    [Header("MONSTER FEEDBACK")]
     public string[] monsterGood;
     public string[] monsterMedium;
     public string[] monsterBad;
 
-    [Header("--- INTERACTIONS ---")]
+    [Header("INTERACTIONS")]
     public Button machineButton;
     public GameObject cashButton; 
     public Image cashImage;       
     
-    [Header("--- COIN GRAPHICS ---")]
+    [Header("COIN GRAPHICS")]
     public Sprite coinsLarge;
     public Sprite coinsMedium;
     public Sprite coinsSmall;
 
-    [Header("--- ANIMATION ---")]
+    [Header("ANIMATION")]
     public float jumpSpeed = 0.5f;
     private Vector3 startPosition;
     private Vector3 hiddenPosition;
@@ -193,6 +193,10 @@ public class ClientManager : MonoBehaviour
         if (game != null) game.ResetTimerDisplay();
 
         clientWhole.SetActive(true);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxNewCustomer);
+
         ClientVisuals visuals = clientWhole.GetComponent<ClientVisuals>();
         if (visuals != null) visuals.HideBubble();
 
@@ -240,6 +244,9 @@ public class ClientManager : MonoBehaviour
 
     IEnumerator PickUpCashSequence()
     {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMoneyCollected);
+
         TotalGold += WonCoins;
         WonCoins = 0;
         ReturningFromGame = false;
@@ -394,6 +401,9 @@ public class ClientManager : MonoBehaviour
     public void OnMachineButtonClick()
     {
         if (PauseMenu.isCountingDown) return;
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
 
         if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(0);
 
