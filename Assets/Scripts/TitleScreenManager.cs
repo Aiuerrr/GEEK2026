@@ -52,6 +52,8 @@ public class TitleScreenManager : MonoBehaviour
         if (obecnyIndeks < 0) obecnyIndeks = opcjeMenu.Length - 1;
         else if (obecnyIndeks >= opcjeMenu.Length) obecnyIndeks = 0;
 
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+
         UpdateCursorPosition();
     }
 
@@ -65,6 +67,11 @@ public class TitleScreenManager : MonoBehaviour
 
     void WykonajAkcje()
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxButtonClicked != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
+
         switch (obecnyIndeks)
         {
             case 0:
@@ -91,6 +98,11 @@ public class TitleScreenManager : MonoBehaviour
 
     void CloseCredits()
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxButtonClicked != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
+
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (buttonsContainer != null) buttonsContainer.SetActive(true);
         if (cursorImage != null) cursorImage.SetActive(true);

@@ -30,11 +30,21 @@ public class OptionsController : MonoBehaviour
 
     public void SetFullscreen(bool isFullscreen)
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxButtonClicked != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
+
         Screen.fullScreen = isFullscreen;
     }
 
     public void CloseOptions()
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxButtonClicked != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
+
         gameObject.SetActive(false);
     }
 }
