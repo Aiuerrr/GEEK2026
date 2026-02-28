@@ -6,14 +6,14 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
-    // --- NASZA BEZPIECZNA FLAGA ---
     public static bool isCountingDown = false;
 
+    [Header("UI References")]
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private InputActionReference pauseAction;
 
-    [Header("--- ODLICZANIE (3, 2, 1) ---")]
+    [Header("Countdown")]
     [SerializeField] private GameObject countdownPanel;
     [SerializeField] private Image countdownImage;
     [SerializeField] private Sprite[] countdownSprites;
@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        isCountingDown = false; // Zabezpieczenie przy restarcie sceny
+        isCountingDown = false;
     }
 
     private void OnEnable()
@@ -51,14 +51,8 @@ public class PauseMenu : MonoBehaviour
             return;
         }
 
-        if (pauseMenuUI.activeSelf)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            StopGame();
-        }
+        if (pauseMenuUI.activeSelf) ResumeGame();
+        else StopGame();
     }
 
     public void ResumeGame()
@@ -78,7 +72,7 @@ public class PauseMenu : MonoBehaviour
             countdownRoutine = null;
         }
 
-        isCountingDown = false; // PRZERWANIE ODLICZANIA
+        isCountingDown = false;
         if (countdownPanel != null) countdownPanel.SetActive(false);
 
         pauseMenuUI.SetActive(true);
@@ -87,7 +81,7 @@ public class PauseMenu : MonoBehaviour
 
     private IEnumerator CountdownCoroutine()
     {
-        isCountingDown = true; // ZACZYNAMY ODLICZANIE
+        isCountingDown = true;
         if (countdownPanel != null) countdownPanel.SetActive(true);
 
         Time.timeScale = 0f;
@@ -109,7 +103,6 @@ public class PauseMenu : MonoBehaviour
             {
                 elapsed += Time.unscaledDeltaTime;
                 float t = elapsed / popDuration;
-
                 float scale = Mathf.SmoothStep(0f, targetScale, t);
                 countdownImage.transform.localScale = new Vector3(scale, scale, 1f);
 
@@ -117,14 +110,13 @@ public class PauseMenu : MonoBehaviour
             }
 
             countdownImage.transform.localScale = new Vector3(targetScale, targetScale, 1f);
-
             yield return new WaitForSecondsRealtime(holdDuration);
         }
 
         if (countdownPanel != null) countdownPanel.SetActive(false);
         countdownRoutine = null;
 
-        isCountingDown = false; // KONIEC ODLICZANIA
+        isCountingDown = false;
         Time.timeScale = 1f;
     }
 
