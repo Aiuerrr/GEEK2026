@@ -4,10 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
-    [Header("UI Settings")]
     [SerializeField] private GameObject pauseMenuUI;
-
-    [Header("Input Action Reference")]
+    [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private InputActionReference pauseAction;
 
     private void OnEnable()
@@ -42,6 +40,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
+        if (optionsMenuUI != null) optionsMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -49,6 +48,11 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void OpenOptions()
+    {
+        if (optionsMenuUI != null) optionsMenuUI.SetActive(true);
     }
 
     public void ReturnToMenu()
