@@ -19,6 +19,14 @@ public class OptionsController : MonoBehaviour
         ApplyInitialVolumes();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseOptions();
+        }
+    }
+
     void ApplyInitialVolumes()
     {
         SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 0.75f));
