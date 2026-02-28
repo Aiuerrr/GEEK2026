@@ -6,40 +6,37 @@ using System.Collections;
 
 public class EndScreenController : MonoBehaviour
 {
-    [Header("--- UI ELEMENTS ---")]
+    [Header("UI Elements")]
     public GameObject screenPanel;
     public RectTransform envelopeRect;
     public GameObject resultCardObj;
-    
-    [Header("--- CARD VISUALS ---")]
+
+    [Header("Card Visuals")]
     public Image resultCardImage;
     public Sprite goodEndingSprite;
     public Sprite badEndingSprite;
 
-    [Header("--- TEXTS ---")]
+    [Header("Texts")]
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI messageText;
     public TextMeshProUGUI statsText;
-    
-    [Header("--- TRIVIA ---")]
     public TextMeshProUGUI triviaText;
     public string[] triviaFacts;
 
-    [Header("--- BUTTONS ---")]
+    [TextArea] public string winMessage;
+    [TextArea] public string loseMessage;
+
+    [Header("Buttons")]
     public GameObject endlessButton;
     public GameObject menuButton;
 
-    [Header("--- ANIMATION SETTINGS ---")]
+    [Header("Animation Settings")]
     public float startDelay = 2.0f;
     public float openDelay = 1.0f;
     public float readingTime = 5.0f;
     public float closeDelay = 2.0f;
-    
     public float slideSpeed = 5000f;
     public float offScreenY = -1500f;
-
-    [TextArea] public string winMessage;
-    [TextArea] public string loseMessage;
 
     public void ShowEndScreen(bool isWin, int round, int gold)
     {
@@ -54,8 +51,7 @@ public class EndScreenController : MonoBehaviour
 
         if (triviaText != null && triviaFacts != null && triviaFacts.Length > 0)
         {
-            int randomIndex = Random.Range(0, triviaFacts.Length);
-            triviaText.text = triviaFacts[randomIndex];
+            triviaText.text = triviaFacts[Random.Range(0, triviaFacts.Length)];
         }
 
         if (isWin)
@@ -63,12 +59,7 @@ public class EndScreenController : MonoBehaviour
             resultCardImage.sprite = goodEndingSprite;
             titleText.text = "Drogi graczu, gratulacje!\nUdało ci się utrzymać drukarnię!";
             titleText.color = Color.black;
-            
-            if (messageText != null) 
-            {
-                messageText.text = winMessage;
-            }
-            
+            if (messageText != null) messageText.text = winMessage;
             endlessButton.SetActive(true);
         }
         else
@@ -76,12 +67,7 @@ public class EndScreenController : MonoBehaviour
             resultCardImage.sprite = badEndingSprite;
             titleText.text = "Drogi graczu, niestety...\nNie udało ci się utrzymać drukarni.";
             titleText.color = Color.black;
-            
-            if (messageText != null)
-            {
-                messageText.text = loseMessage;
-            }
-            
+            if (messageText != null) messageText.text = loseMessage;
             endlessButton.SetActive(false);
         }
 
@@ -91,9 +77,7 @@ public class EndScreenController : MonoBehaviour
     IEnumerator FullSequenceRoutine()
     {
         yield return new WaitForSecondsRealtime(startDelay);
-
         yield return StartCoroutine(SlideEnvelope(0));
-
         yield return new WaitForSecondsRealtime(openDelay);
 
         envelopeRect.gameObject.SetActive(false);
@@ -105,7 +89,6 @@ public class EndScreenController : MonoBehaviour
         envelopeRect.gameObject.SetActive(true);
 
         yield return new WaitForSecondsRealtime(closeDelay);
-
         yield return StartCoroutine(SlideEnvelope(offScreenY));
 
         envelopeRect.gameObject.SetActive(false);
@@ -114,7 +97,6 @@ public class EndScreenController : MonoBehaviour
     IEnumerator SlideEnvelope(float targetY)
     {
         float currentY = envelopeRect.anchoredPosition.y;
-        
         while (Mathf.Abs(currentY - targetY) > 10f)
         {
             currentY = Mathf.MoveTowards(currentY, targetY, slideSpeed * Time.unscaledDeltaTime);
@@ -133,6 +115,6 @@ public class EndScreenController : MonoBehaviour
     public void OnMenuClicked()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenuScene"); 
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

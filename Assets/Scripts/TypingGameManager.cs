@@ -5,12 +5,14 @@ using System.Collections;
 
 public class TypingGameManager : MonoBehaviour
 {
-    [Header("--- UI REFERENCES ---")]
+    public bool isGameActive;
+
+    [Header("UI References")]
     public TMP_Text textDisplay;
     public TMP_Text timerText;
     public TMP_Text feedbackText;
 
-    [Header("--- STATYSTYKI UI (DO PODPIĘCIA) ---")]
+    [Header("Stats UI")]
     public TMP_Text wpmText;
     public TMP_Text moneyText;
     public TMP_Text paperText;
@@ -31,14 +33,10 @@ public class TypingGameManager : MonoBehaviour
     private float currentTime;
     private int currentIndex;
     private int mistakes;
-    public bool isGameActive;
-
     private int savedWPM = 0;
-
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
-
     private GameLoopManager gameLoopManager;
 
     void Start()
@@ -47,7 +45,6 @@ public class TypingGameManager : MonoBehaviour
             originalUiPos = uiElementToShake.anchoredPosition;
 
         isGameActive = false;
-
         currentTime = initialTime;
         savedWPM = 0;
         UpdateTimerUI();
@@ -55,19 +52,18 @@ public class TypingGameManager : MonoBehaviour
         gameLoopManager = FindFirstObjectByType<GameLoopManager>();
     }
 
-    // --- NOWA FUNKCJA DO RESETOWANIA SAMEGO WYGLĄDU ZEGARA ---
     public void ResetTimerDisplay()
     {
         currentTime = initialTime;
         UpdateTimerUI();
     }
 
-    public void StartGame(string nowyTekst)
+    public void StartGame(string newText)
     {
-        if (string.IsNullOrEmpty(nowyTekst)) return;
+        if (string.IsNullOrEmpty(newText)) return;
 
-        textToType = nowyTekst;
-        currentTime = initialTime; // Dla pewności resetujemy też tutaj
+        textToType = newText;
+        currentTime = initialTime;
         currentIndex = 0;
         mistakes = 0;
         savedWPM = 0;
@@ -117,7 +113,6 @@ public class TypingGameManager : MonoBehaviour
     void OnTextInput(char c)
     {
         if (Time.timeScale == 0f) return;
-
         if (!isGameActive) return;
         if (char.IsControl(c)) return;
 
@@ -158,10 +153,10 @@ public class TypingGameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            float timeElapsedInSeconds = initialTime - currentTime;
-            if (timeElapsedInSeconds > 0)
+            float timeElapsed = initialTime - currentTime;
+            if (timeElapsed > 0)
             {
-                float minutesElapsed = timeElapsedInSeconds / 60f;
+                float minutesElapsed = timeElapsed / 60f;
                 savedWPM = Mathf.RoundToInt((currentIndex / 5f) / minutesElapsed);
             }
         }
@@ -170,10 +165,7 @@ public class TypingGameManager : MonoBehaviour
         if (moneyText != null) moneyText.text = $"{ClientManager.TotalGold}";
         if (paperText != null) paperText.text = $"{ClientManager.PaperCount}";
         if (inkText != null) inkText.text = $"{ClientManager.InkCount} ({ClientManager.CurrentInkUses}/2)";
-        if (clientNumberText != null && gameLoopManager != null)
-        {
-            clientNumberText.text = $"{gameLoopManager.currentRound}";
-        }
+        if (clientNumberText != null && gameLoopManager != null) clientNumberText.text = $"{gameLoopManager.currentRound}";
     }
 
     IEnumerator ShakeUI()
@@ -200,12 +192,10 @@ public class TypingGameManager : MonoBehaviour
 
         string correctPart = textToType.Substring(0, currentIndex);
         string remainingPart = textToType.Substring(currentIndex);
-
         string cursorTag = (isGameActive && isCursorVisible) ? "" : "<alpha=#00>";
         string cursor = $"<color=#000000>{cursorTag}|</color>";
 
-        string formattedText = $"<color=#000000>{correctPart}</color>{cursor}<color=#808080>{remainingPart}</color>";
-        textDisplay.text = formattedText;
+        textDisplay.text = $"<color=#000000>{correctPart}</color>{cursor}<color=#808080>{remainingPart}</color>";
     }
 
     void UpdateTimerUI()
@@ -229,11 +219,7 @@ public class TypingGameManager : MonoBehaviour
 
         int moneyToPay = 0;
 
-        if (!wasSuccessful)
-        {
-            moneyToPay = 0;
-        }
-        else
+        if (wasSuccessful)
         {
             if (mistakes == 0) moneyToPay = 500;
             else if (mistakes <= 3) moneyToPay = 350;
@@ -241,20 +227,16 @@ public class TypingGameManager : MonoBehaviour
         }
 
         ClientManager client = FindFirstObjectByType<ClientManager>();
-        if (client != null)
-        {
-            client.JobFinished(moneyToPay);
-        }
+        if (client != null) client.JobFinished(moneyToPay);
     }
 
-    // --- NOWA FUNKCJA: Wpisuje tekst na kartkę ZANIM zacznie się gra ---
-    public void PrepareTextToType(string nowyTekst)
+    public void PrepareTextToType(string newText)
     {
-        if (string.IsNullOrEmpty(nowyTekst)) return;
+        if (string.IsNullOrEmpty(newText)) return;
 
-        textToType = nowyTekst;
+        textToType = newText;
         currentIndex = 0;
-        isCursorVisible = false; // Kursor nie miga, dopóki kartka jedzie
+        isCursorVisible = false;
 
         UpdateTextDisplay();
     }

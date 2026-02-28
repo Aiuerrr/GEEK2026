@@ -233,7 +233,6 @@ public class ClientManager : MonoBehaviour
 
     public void PickUpCash()
     {
-        // --- BLOKADA: Nie można podnieść kasy podczas odliczania ---
         if (PauseMenu.isCountingDown) return;
 
         StartCoroutine(PickUpCashSequence());
@@ -394,7 +393,6 @@ public class ClientManager : MonoBehaviour
 
     public void OnMachineButtonClick()
     {
-        // 100% PEWNA BLOKADA: Sprawdza flagę z PauseMenu
         if (PauseMenu.isCountingDown) return;
 
         if (CurrentInkUses <= 0 && InkCount > 0)

@@ -5,7 +5,7 @@ public class PaperController : MonoBehaviour
 {
     [Header("UI References")]
     public RectTransform paperRect;
-    
+
     [Header("Animation Settings")]
     public Vector2 hiddenPosition;
     public Vector2 visiblePosition;
@@ -16,18 +16,14 @@ public class PaperController : MonoBehaviour
     void Awake()
     {
         typingManager = FindFirstObjectByType<TypingGameManager>();
-        
-        if (paperRect != null) 
+
+        if (paperRect != null)
             paperRect.anchoredPosition = hiddenPosition;
     }
 
     public void SlideIn(string textToType)
     {
-        // --- ZMIANA: Ustawiamy prawid³owy tekst ZANIM animacja ruszy ---
-        if (typingManager != null)
-        {
-            typingManager.PrepareTextToType(textToType);
-        }
+        if (typingManager != null) typingManager.PrepareTextToType(textToType);
 
         StopAllCoroutines();
         StartCoroutine(AnimateSlideIn(textToType));
@@ -46,10 +42,7 @@ public class PaperController : MonoBehaviour
 
         paperRect.anchoredPosition = visiblePosition;
 
-        if (typingManager != null)
-        {
-            typingManager.StartGame(text);
-        }
+        if (typingManager != null) typingManager.StartGame(text);
     }
 
     public void SlideOut()

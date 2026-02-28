@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class TitleScreenManager : MonoBehaviour
 {
+    [Header("UI Panels")]
     public GameObject optionsPanel;
     public GameObject creditsPanel;
     public GameObject buttonsContainer;
     public GameObject cursorImage;
 
+    [Header("Menu Navigation")]
     public RectTransform[] opcjeMenu;
     public RectTransform kursor;
     public Vector2[] korekty;
@@ -21,7 +23,6 @@ public class TitleScreenManager : MonoBehaviour
         {
             korekty = new Vector2[opcjeMenu.Length];
         }
-
         UpdateCursorPosition();
     }
 
@@ -38,19 +39,10 @@ public class TitleScreenManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ZmienWybor(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ZmienWybor(1);
-        }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) ZmienWybor(-1);
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) ZmienWybor(1);
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-        {
-            WykonajAkcje();
-        }
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) WykonajAkcje();
     }
 
     void ZmienWybor(int kierunek)
@@ -65,14 +57,10 @@ public class TitleScreenManager : MonoBehaviour
 
     void UpdateCursorPosition()
     {
-        if (opcjeMenu[obecnyIndeks] == null) return;
+        if (opcjeMenu[obecnyIndeks] == null || kursor == null) return;
 
         Vector3 nowaPozycja = opcjeMenu[obecnyIndeks].position;
-        
-        float poprawkaX = korekty[obecnyIndeks].x;
-        float poprawkaY = korekty[obecnyIndeks].y;
-
-        kursor.position = new Vector3(nowaPozycja.x + poprawkaX, nowaPozycja.y + poprawkaY, nowaPozycja.z);
+        kursor.position = new Vector3(nowaPozycja.x + korekty[obecnyIndeks].x, nowaPozycja.y + korekty[obecnyIndeks].y, nowaPozycja.z);
     }
 
     void WykonajAkcje()

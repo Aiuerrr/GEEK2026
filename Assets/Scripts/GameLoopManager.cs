@@ -1,24 +1,22 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 using System.Collections;
 
 public class GameLoopManager : MonoBehaviour
 {
-    [Header("--- ROUND CONFIG ---")]
+    [Header("Round Config")]
     public int currentRound = 1;
-    public int rentInterval = 10; 
+    public int rentInterval = 10;
     public int rentAmount = 3000;
-    public float rentMultiplier = 1.5f; 
+    public float rentMultiplier = 1.5f;
 
-    [Header("--- TIMING ---")]
-    public float delayBetweenRounds = 2.0f; 
+    [Header("Timing")]
+    public float delayBetweenRounds = 2.0f;
 
-    [Header("--- UI ---")]
-    public TextMeshProUGUI roundText; 
-    public EndScreenController endScreenController; 
-
-    [Header("--- REFERENCES ---")]
-    public ClientManager clientSystem; 
+    [Header("References")]
+    public TextMeshProUGUI roundText;
+    public EndScreenController endScreenController;
+    public ClientManager clientSystem;
 
     private void Start()
     {
@@ -28,19 +26,13 @@ public class GameLoopManager : MonoBehaviour
     public void StartNewRound()
     {
         if (roundText != null) roundText.text = "Round: " + currentRound;
-        if (clientSystem != null) clientSystem.StartClientCycle(); 
+        if (clientSystem != null) clientSystem.StartClientCycle();
     }
 
     public void EndRound()
     {
-        if (currentRound % rentInterval == 0)
-        {
-            PayRent();
-        }
-        else
-        {
-            AdvanceRound();
-        }
+        if (currentRound % rentInterval == 0) PayRent();
+        else AdvanceRound();
     }
 
     void PayRent()
@@ -50,12 +42,12 @@ public class GameLoopManager : MonoBehaviour
         if (currentGold >= rentAmount)
         {
             ClientManager.TotalGold -= rentAmount;
-            
+
             if (endScreenController != null)
             {
                 endScreenController.ShowEndScreen(true, currentRound, ClientManager.TotalGold);
             }
-            
+
             rentAmount = Mathf.RoundToInt(rentAmount * rentMultiplier);
             AdvanceRound();
         }

@@ -7,7 +7,7 @@ public class GameResultSystem : MonoBehaviour
     public float pointsForAccuracy = 500f;
     public float pointsForSecond = 10f;
 
-    [Header("Sallary Thresholds")]
+    [Header("Salary Thresholds")]
     public int moneyThreshold = 600;
     public int silverThreshold = 300;
 
@@ -15,20 +15,15 @@ public class GameResultSystem : MonoBehaviour
     {
         int madeMoney = 0;
 
-        if (!onTime)
+        if (onTime)
         {
-            madeMoney = 0;
-        }
-        else
-        {
-            if (textLenght == 0) textLenght = 1; 
+            if (textLenght == 0) textLenght = 1;
             float accuracy = (float)(textLenght - numberOfErrors) / textLenght;
             if (accuracy < 0) accuracy = 0;
 
             float scoreForAccuracy = accuracy * pointsForAccuracy;
             float scoreForTime = remainingTime * pointsForSecond;
             float result = scoreForAccuracy + scoreForTime;
-
 
             if (result >= moneyThreshold) madeMoney = 100;
             else if (remainingTime >= silverThreshold) madeMoney = 50;
