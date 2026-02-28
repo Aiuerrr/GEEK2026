@@ -303,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -61, y: 22}
   m_SizeDelta: {x: 700, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146792021
@@ -355,10 +355,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 65.65
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1563,7 +1563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &428406534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1806,7 +1806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &511427482
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1964,6 +1964,51 @@ MonoBehaviour:
   titleText: {fileID: 146792021}
   messageText: {fileID: 0}
   statsText: {fileID: 1627743699}
+  triviaText: {fileID: 1798906857}
+  triviaFacts:
+  - "Czy wiesz, \u017Ce... Teoria heliocentryczna Kopernika by\u0142a tak rewolucyjna,
+    \u017Ce jego najwa\u017Cniejsza ksi\u0105\u017Cka znajdowa\u0142a si\u0119 na
+    li\u015Bcie ksi\u0105g zakazanych przez ponad 200 lat?"
+  - "Czy wiesz, \u017Ce... Isaac Newton sformu\u0142owa\u0142 prawo grawitacji, siedz\u0105c
+    w domu podczas kwarantanny wywo\u0142anej epidemi\u0105 d\u017Cumy?"
+  - "Czy wiesz, \u017Ce... Karol Darwin, odkrywaj\u0105c teori\u0119 ewolucji, prowadzi\u0142
+    tak dok\u0142adne notatki, \u017Ce opisa\u0142 w nich nawet to, jak smakuj\u0105
+    niekt\xF3re nowo odkryte gatunki zwierz\u0105t? "
+  - "Czy wiesz, \u017Ce... Twoje cia\u0142o sk\u0142ada si\u0119 z atom\xF3w, kt\xF3re
+    powsta\u0142y miliardy lat temu we wn\u0119trzu wybuchaj\u0105cych gwiazd? "
+  - "Czy wiesz, \u017Ce... Maria Sk\u0142odowska-Curie odkry\u0142a promieniotw\xF3rczo\u015B\u0107
+    polonu i radu, pracuj\u0105c w zwyk\u0142ej, dziurawej szopie, kt\xF3ra s\u0142u\u017Cy\u0142a
+    wcze\u015Bniej jako prosektorium? "
+  - "Czy wiesz, \u017Ce... Odkrycie tlenu przez Lavoisiera obali\u0142o wiar\u0119
+    w mityczny \"flogiston\", kt\xF3ry przez lata uwa\u017Cano za substancj\u0119
+    powoduj\u0105c\u0105 ogie\u0144? "
+  - "Czy wiesz, \u017Ce... Teoria zarazkowa Pasteura sprawi\u0142a, \u017Ce lekarze
+    w ko\u0144cu zacz\u0119li my\u0107 r\u0119ce przed operacjami, co uratowa\u0142o
+    wi\u0119cej ludzi ni\u017C jakakolwiek wojna? "
+  - "Czy wiesz, \u017Ce... DNA jest tak g\u0119sto upakowane w j\u0105drze kom\xF3rki,
+    \u017Ce gdyby rozci\u0105gn\u0105\u0107 je ze wszystkich Twoich kom\xF3rek, si\u0119gn\u0119\u0142oby
+    do Plutona i z powrotem? "
+  - "Czy wiesz, \u017Ce... Odkrycie pr\u0119dko\u015Bci \u015Bwiat\u0142a udowodni\u0142o,
+    \u017Ce gdy patrzysz na S\u0142o\u0144ce, widzisz je takim, jakie by\u0142o 8
+    minut i 20 sekund temu? "
+  - "Czy wiesz, \u017Ce... Grzegorz Mendel, odkrywca praw dziedziczenia, przeprowadzi\u0142
+    swoje badania na ponad 28 tysi\u0105cach ro\u015Blin grochu w przyklasztornym
+    ogrodzie? "
+  - "Czy wiesz, \u017Ce... Odkrycie rozszerzania si\u0119 wszech\u015Bwiata oznacza,
+    \u017Ce ka\u017Cda galaktyka oddala si\u0119 od nas z pr\u0119dko\u015Bci\u0105
+    tysi\u0119cy kilometr\xF3w na sekund\u0119? "
+  - "Czy wiesz, \u017Ce... Zjawisko fotosyntezy jest tak wydajne, \u017Ce ro\u015Bliny
+    potrafi\u0105 przetworzy\u0107 energi\u0119 s\u0142oneczn\u0105 z niemal stuprocentow\u0105
+    skuteczno\u015Bci\u0105? "
+  - "Czy wiesz, \u017Ce... William Harvey, odkrywca kr\u0105\u017Cenia krwi, musia\u0142
+    broni\u0107 swojej teorii przed lekarzami, kt\xF3rzy wci\u0105\u017C wierzyli,
+    \u017Ce krew jest produkowana przez w\u0105trob\u0119? "
+  - "Czy wiesz, \u017Ce... Odkrycie tektoniki p\u0142yt wyja\u015Bni\u0142o, dlaczego
+    na szczycie Mount Everest mo\u017Cna znale\u017A\u0107 skamienia\u0142o\u015Bci
+    morskich zwierz\u0105t? "
+  - "Czy wiesz, \u017Ce... Promieniowanie t\u0142a, b\u0119d\u0105ce dowodem na Wielki
+    Wybuch, mo\u017Cna by\u0142o kiedy\u015B zobaczy\u0107 jako \"\u015Bnie\u017Cenie\"
+    w starych, analogowych telewizorach? "
   endlessButton: {fileID: 555883876}
   menuButton: {fileID: 1469652098}
   startDelay: 2
@@ -2141,7 +2186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -210}
+  m_AnchoredPosition: {x: 10, y: -238}
   m_SizeDelta: {x: 500, y: 171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &605534931
@@ -3141,6 +3186,7 @@ RectTransform:
   - {fileID: 1627743701}
   - {fileID: 555883880}
   - {fileID: 1469652099}
+  - {fileID: 1798906856}
   - {fileID: 428406534}
   - {fileID: 511427482}
   m_Father: {fileID: 545910860}
@@ -4447,7 +4493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -360}
+  m_AnchoredPosition: {x: 10, y: -374}
   m_SizeDelta: {x: 500, y: 171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469652100
@@ -5340,7 +5386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: 90}
+  m_AnchoredPosition: {x: 310, y: 196}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1738475305
@@ -5630,6 +5676,145 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1381847810}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1798906855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798906856}
+  - component: {fileID: 1798906858}
+  - component: {fileID: 1798906857}
+  m_Layer: 5
+  m_Name: ciekawostka
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1798906856
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798906855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1064015401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -460, y: -11}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1798906857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798906855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Czy wiesz, \u017Ce... Promieniowanie t\u0142a, b\u0119d\u0105ce dowodem
+    na \nWielki Wybuch, mo\u017Cna by\u0142o kiedy\u015B zobaczy\u0107\n jako \"\u015Bnie\u017Cenie\"
+    w starych, analogowych telewizorach?\r\n"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 40
+  m_fontSizeMax: 50
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -889.6482, w: -81.04343}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1798906858
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798906855}
+  m_CullTransparentMesh: 1
 --- !u!1 &1812059055
 GameObject:
   m_ObjectHideFlags: 0
