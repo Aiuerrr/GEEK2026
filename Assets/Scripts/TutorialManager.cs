@@ -9,12 +9,13 @@ public class TutorialManager : MonoBehaviour
 
     [Header("UI Elements")]
     public GameObject tutorialPanel;
-    public RectTransform bubbleRect; 
+    public RectTransform bubbleRect;
     public TextMeshProUGUI tutorialText;
     public Button gotItButton;
 
     [Header("Animation & Positions")]
     public float animationDuration = 0.3f;
+    public float targetScale = 0.75f;
     public Vector2[] stepPositions;
 
     private int currentStep = 0;
@@ -43,7 +44,14 @@ public class TutorialManager : MonoBehaviour
     {
         isTutorialActive = true;
         currentStep = 0;
+
+        if (bubbleRect != null)
+        {
+            bubbleRect.localScale = Vector3.zero;
+        }
+
         tutorialPanel.SetActive(true);
+
         ShowCurrentStep();
     }
 
@@ -91,9 +99,10 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (animationCoroutine != null) StopCoroutine(animationCoroutine);
-        if (gameObject.activeInHierarchy) animationCoroutine = StartCoroutine(AnimateBubblePop());
-    }
 
+        bubbleRect.localScale = Vector3.zero;
+        animationCoroutine = StartCoroutine(AnimateBubblePop());
+    }
     IEnumerator AnimateBubblePop()
     {
         if (bubbleRect == null) yield break;
@@ -106,14 +115,16 @@ public class TutorialManager : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / animationDuration;
 
-            float scale = Mathf.Clamp01(t);
-            scale = Mathf.Sin(scale * Mathf.PI * 0.5f) + Mathf.Sin(scale * Mathf.PI) * 0.15f;
+            float curve = Mathf.Clamp01(t);
+            curve = Mathf.Sin(curve * Mathf.PI * 0.5f) + Mathf.Sin(curve * Mathf.PI) * 0.15f;
 
-            bubbleRect.localScale = new Vector3(scale, scale, 1f);
+            float currentScale = curve * targetScale;
+
+            bubbleRect.localScale = new Vector3(currentScale, currentScale, 1f);
             yield return null;
         }
 
-        bubbleRect.localScale = Vector3.one;
+        bubbleRect.localScale = new Vector3(targetScale, targetScale, 1f);
     }
 
     public void OnGotItClicked()
