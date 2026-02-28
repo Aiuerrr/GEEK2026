@@ -40,6 +40,11 @@ public class ShopManager : MonoBehaviour
 
         if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(3);
 
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxEasterEgg != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
+
         if (shopPanel != null)
         {
             if (shopPanelRect != null) shopPanelRect.anchoredPosition = offScreenPosition;
@@ -59,6 +64,11 @@ public class ShopManager : MonoBehaviour
     public void CloseShop()
     {
         if (PauseMenu.isCountingDown) return;
+
+        if (AudioManager.Instance != null && AudioManager.Instance.sfxEasterEgg != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButtonClicked);
+        }
 
         if (shopPanel != null)
         {

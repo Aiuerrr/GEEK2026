@@ -10,7 +10,6 @@ public class TypingGameManager : MonoBehaviour
     [Header("UI References")]
     public TMP_Text textDisplay;
     public TMP_Text timerText;
-    public TMP_Text feedbackText;
 
     [Header("Stats UI")]
     public TMP_Text wpmText;
@@ -71,8 +70,6 @@ public class TypingGameManager : MonoBehaviour
 
         UpdateTextDisplay();
         UpdateTimerUI();
-        if (feedbackText) feedbackText.text = "";
-
         UpdateLiveStatsUI();
     }
 
@@ -123,7 +120,6 @@ public class TypingGameManager : MonoBehaviour
             if (c == expectedChar)
             {
                 currentIndex++;
-                if (feedbackText) feedbackText.text = "";
 
                 isCursorVisible = true;
                 blinkTimer = 0f;
@@ -142,7 +138,12 @@ public class TypingGameManager : MonoBehaviour
             else
             {
                 mistakes++;
-                if (feedbackText) feedbackText.text = "BŁĄD!";
+                
+                if (AudioManager.Instance != null && AudioManager.Instance.sfxMistake != null)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMistake);
+                }
+
                 StopAllCoroutines();
                 StartCoroutine(ShakeUI());
             }

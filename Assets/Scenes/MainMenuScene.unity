@@ -675,6 +675,7 @@ MonoBehaviour:
   sfxMoneyCollected: {fileID: 8300000, guid: adde2297a6bb7b846a7daf145a4ecc12, type: 3}
   sfxButtonClicked: {fileID: 8300000, guid: 3ad9398b2f4be0a4983822ac600bfb37, type: 3}
   sfxShopBuy: {fileID: 8300000, guid: bc0ab5bb0069bb343b64f2934929cf9f, type: 3}
+  sfxMistake: {fileID: 8300000, guid: e4fa4853a37762d4b9875201079375f7, type: 3}
 --- !u!4 &807746101
 Transform:
   m_ObjectHideFlags: 0
