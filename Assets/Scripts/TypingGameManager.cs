@@ -31,7 +31,7 @@ public class TypingGameManager : MonoBehaviour
     private float currentTime;
     private int currentIndex;
     private int mistakes;
-    private bool isGameActive;
+    public bool isGameActive;
 
     private int savedWPM = 0;
 
@@ -116,6 +116,8 @@ public class TypingGameManager : MonoBehaviour
 
     void OnTextInput(char c)
     {
+        if (Time.timeScale == 0f) return;
+
         if (!isGameActive) return;
         if (char.IsControl(c)) return;
 

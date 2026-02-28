@@ -32,8 +32,20 @@ public class ShopManager : MonoBehaviour
     }
 
     // --- OTWIERANIE SKLEPU ---
+    // --- OTWIERANIE SKLEPU ---
     public void OpenShop()
     {
+        // ZABEZPIECZENIE: Nie otwieraj sklepu, jeœli gra jest zapauzowana lub trwa odliczanie
+        if (Time.timeScale == 0f) return;
+
+        // Sprawdzamy, czy gracz w³aœnie nie przepisuje tekstu (to ju¿ mia³eœ zrobione wczeœniej)
+        TypingGameManager typingManager = FindFirstObjectByType<TypingGameManager>();
+        if (typingManager != null && typingManager.isGameActive)
+        {
+            Debug.Log("Nie mo¿na otworzyæ sklepu w trakcie przepisywania tekstu!");
+            return;
+        }
+
         if (shopPanel != null)
         {
             if (shopPanelRect != null) shopPanelRect.anchoredPosition = offScreenPosition;
@@ -43,7 +55,7 @@ public class ShopManager : MonoBehaviour
 
             if (elementsToOff != null) elementsToOff.SetActive(false);
 
-            Time.timeScale = 0f; // Zatrzymujemy grê
+            Time.timeScale = 0f; // Zatrzymujemy grê dla sklepu
 
             StopAllCoroutines();
             StartCoroutine(SlideInShop());

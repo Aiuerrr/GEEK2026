@@ -391,6 +391,8 @@ public class ClientManager : MonoBehaviour
 
     public void OnMachineButtonClick()
     {
+        if (Time.timeScale == 0f) return;
+
         if (CurrentInkUses <= 0 && InkCount > 0)
         {
             InkCount--;
