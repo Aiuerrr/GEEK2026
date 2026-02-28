@@ -27,10 +27,14 @@ public class SceneFader : MonoBehaviour
 
     public void FadeToScene(string sceneName)
     {
+<<<<<<< Updated upstream
         if (fadeImage != null)
         {
             StartCoroutine(FadeOut(sceneName));
         }
+=======
+        StartCoroutine(FadeOut(sceneName));
+>>>>>>> Stashed changes
     }
 
     private IEnumerator FadeIn()
@@ -44,13 +48,19 @@ public class SceneFader : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+<<<<<<< Updated upstream
 
         fadeImage.gameObject.SetActive(false);
+=======
+>>>>>>> Stashed changes
     }
 
     private IEnumerator FadeOut(string sceneName)
     {
+<<<<<<< Updated upstream
         fadeImage.gameObject.SetActive(true);
+=======
+>>>>>>> Stashed changes
         fadeImage.raycastTarget = true;
         float alpha = 0f;
 
