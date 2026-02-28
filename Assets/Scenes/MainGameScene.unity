@@ -5654,8 +5654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameLoopManager
   currentRound: 1
-  rentInterval: 3
-  rentAmount: 100
+  rentInterval: 10
+  rentAmount: 3000
   rentMultiplier: 1.5
   delayBetweenRounds: 4
   roundText: {fileID: 0}

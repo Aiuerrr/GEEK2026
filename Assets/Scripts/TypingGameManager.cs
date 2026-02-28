@@ -233,9 +233,9 @@ public class TypingGameManager : MonoBehaviour
         }
         else
         {
-            if (mistakes == 0) moneyToPay = 100;
-            else if (mistakes <= 3) moneyToPay = 50;
-            else moneyToPay = 25;
+            if (mistakes == 0) moneyToPay = 500;
+            else if (mistakes <= 3) moneyToPay = 350;
+            else moneyToPay = 150;
         }
 
         ClientManager client = FindFirstObjectByType<ClientManager>();
