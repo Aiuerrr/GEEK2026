@@ -228,6 +228,7 @@ public class TypingGameManager : MonoBehaviour
 
         ClientManager client = FindFirstObjectByType<ClientManager>();
         if (client != null) client.JobFinished(moneyToPay);
+        if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(1);
     }
 
     public void PrepareTextToType(string newText)

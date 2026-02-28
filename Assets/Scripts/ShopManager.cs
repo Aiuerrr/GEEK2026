@@ -38,6 +38,8 @@ public class ShopManager : MonoBehaviour
         TypingGameManager typingManager = FindFirstObjectByType<TypingGameManager>();
         if (typingManager != null && typingManager.isGameActive) return;
 
+        if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(3);
+
         if (shopPanel != null)
         {
             if (shopPanelRect != null) shopPanelRect.anchoredPosition = offScreenPosition;

@@ -234,7 +234,7 @@ public class ClientManager : MonoBehaviour
     public void PickUpCash()
     {
         if (PauseMenu.isCountingDown) return;
-
+        if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(2);
         StartCoroutine(PickUpCashSequence());
     }
 
@@ -394,6 +394,8 @@ public class ClientManager : MonoBehaviour
     public void OnMachineButtonClick()
     {
         if (PauseMenu.isCountingDown) return;
+
+        if (TutorialManager.Instance != null) TutorialManager.Instance.AdvanceTutorial(0);
 
         if (CurrentInkUses <= 0 && InkCount > 0)
         {
