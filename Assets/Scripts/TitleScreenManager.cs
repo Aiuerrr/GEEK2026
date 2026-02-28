@@ -4,17 +4,14 @@ using UnityEngine.UI;
 
 public class TitleScreenManager : MonoBehaviour
 {
-    [Header("--- PANELE ---")]
-    public GameObject optionsPanel; 
+    public GameObject optionsPanel;
+    public GameObject creditsPanel;
+    public GameObject buttonsContainer;
+    public GameObject cursorImage;
 
-    [Header("--- ELEMENTY MENU ---")]
-    public RectTransform[] opcjeMenu; 
-    
-    [Header("--- KURSOR ---")]
+    public RectTransform[] opcjeMenu;
     public RectTransform kursor;
-    
-    [Header("--- KOREKTY POZYCJI (Dla każdego osobno) ---")]
-    public Vector2[] korekty; 
+    public Vector2[] korekty;
 
     private int obecnyIndeks = 0;
 
@@ -30,12 +27,17 @@ public class TitleScreenManager : MonoBehaviour
 
     void Update()
     {
-        // --- ZABEZPIECZENIE ---
-        // Jeśli panel opcji jest włączony, zatrzymaj ten skrypt.
-        // Dzięki temu kursor nie będzie jeździł w tle, jak jesteś w opcjach.
         if (optionsPanel != null && optionsPanel.activeSelf) return;
 
-        // --- NAWIGACJA ---
+        if (creditsPanel != null && creditsPanel.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseCredits();
+            }
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             ZmienWybor(-1);
@@ -45,7 +47,6 @@ public class TitleScreenManager : MonoBehaviour
             ZmienWybor(1);
         }
 
-        // --- ZATWIERDZANIE ---
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             WykonajAkcje();
@@ -78,19 +79,32 @@ public class TitleScreenManager : MonoBehaviour
     {
         switch (obecnyIndeks)
         {
-            case 0: // PLAY
+            case 0:
                 SceneManager.LoadScene("MainGameScene");
                 break;
-            case 1: // OPTIONS
-                // --- NOWE: Otwieramy panel zamiast pisać w logach ---
+            case 1:
                 if (optionsPanel != null) optionsPanel.SetActive(true);
                 break;
-            case 2: // CREDITS
-                Debug.Log("Autorzy...");
+            case 2:
+                OpenCredits();
                 break;
-            case 3: // QUIT
+            case 3:
                 Application.Quit();
                 break;
         }
+    }
+
+    void OpenCredits()
+    {
+        if (buttonsContainer != null) buttonsContainer.SetActive(false);
+        if (cursorImage != null) cursorImage.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(true);
+    }
+
+    void CloseCredits()
+    {
+        if (creditsPanel != null) creditsPanel.SetActive(false);
+        if (buttonsContainer != null) buttonsContainer.SetActive(true);
+        if (cursorImage != null) cursorImage.SetActive(true);
     }
 }
