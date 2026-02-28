@@ -4644,6 +4644,12 @@ MonoBehaviour:
     neutralny: {fileID: 2147356024208957236, guid: 1909d18504ef5dd49989a2b1348bacb8, type: 3}
     szczesliwy: {fileID: -1353065304695557628, guid: 1909d18504ef5dd49989a2b1348bacb8, type: 3}
     zly: {fileID: 3056894887336523878, guid: 1909d18504ef5dd49989a2b1348bacb8, type: 3}
+  - nazwaPostaci: silo_mlot
+    toStaryPotwor: 0
+    cialoStaregoPotwora: {fileID: 0}
+    neutralny: {fileID: -1447083673548208066, guid: 180fb5f1fa06bf34b909697d274d42a7, type: 3}
+    szczesliwy: {fileID: 5399538674696927741, guid: 180fb5f1fa06bf34b909697d274d42a7, type: 3}
+    zly: {fileID: -5259052407168521516, guid: 180fb5f1fa06bf34b909697d274d42a7, type: 3}
   potwory:
   - nazwaPostaci: pierwszy
     toStaryPotwor: 1
@@ -6859,7 +6865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 320}
+  m_AnchoredPosition: {x: 0, y: 340}
   m_SizeDelta: {x: 230, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913198193

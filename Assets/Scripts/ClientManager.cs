@@ -67,7 +67,7 @@ public class ClientManager : MonoBehaviour
     public static int TotalGold = 0;
     public static bool ReturningFromGame = false;
     public static int PaperCount = 3;
-    public static int InkCount = 3;
+    public static int InkCount = 1;
     public static int CurrentInkUses = 2; 
 
     private CharacterProfile currentProfile; 
