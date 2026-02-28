@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class OptionsController : MonoBehaviour
 {
-    [Header("UI Elements")]
     public Slider musicSlider;
     public Slider soundSlider;
     public Toggle fullscreenToggle;
@@ -16,16 +15,36 @@ public class OptionsController : MonoBehaviour
 
         if (musicSlider != null) musicSlider.onValueChanged.AddListener(SetMusicVolume);
         if (soundSlider != null) soundSlider.onValueChanged.AddListener(SetSoundVolume);
+
+        ApplyInitialVolumes();
+    }
+
+    void ApplyInitialVolumes()
+    {
+        SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 0.75f));
+        SetSoundVolume(PlayerPrefs.GetFloat("SoundVolume", 0.75f));
     }
 
     public void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat("MusicVolume", volume);
+        GameObject musicObj = GameObject.Find("SoundtrackSource");
+        if (musicObj != null)
+        {
+            AudioSource audioSrc = musicObj.GetComponent<AudioSource>();
+            if (audioSrc != null) audioSrc.volume = volume;
+        }
     }
 
     public void SetSoundVolume(float volume)
     {
         PlayerPrefs.SetFloat("SoundVolume", volume);
+        GameObject sfxObj = GameObject.Find("SFXSource");
+        if (sfxObj != null)
+        {
+            AudioSource audioSrc = sfxObj.GetComponent<AudioSource>();
+            if (audioSrc != null) audioSrc.volume = volume;
+        }
     }
 
     public void SetFullscreen(bool isFullscreen)

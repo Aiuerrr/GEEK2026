@@ -222,8 +222,8 @@ public class TypingGameManager : MonoBehaviour
 
         if (wasSuccessful)
         {
-            if (mistakes == 0) moneyToPay = 500;
-            else if (mistakes <= 3) moneyToPay = 350;
+            if (mistakes <= 7) moneyToPay = 500;
+            else if (mistakes <= 15) moneyToPay = 350;
             else moneyToPay = 150;
         }
 

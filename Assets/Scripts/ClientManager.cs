@@ -178,7 +178,7 @@ public class ClientManager : MonoBehaviour
         }
 
         if (isHuman) TextToCopy = humanSentences[Random.Range(0, humanSentences.Length)];
-        else TextToCopy = GenerateGibberish(Random.Range(5, 10));
+        else TextToCopy = GenerateGibberish(Random.Range(45, 60));
     }
 
     IEnumerator AnimateEntry()
@@ -392,8 +392,35 @@ public class ClientManager : MonoBehaviour
     {
         string gibberish = "";
         string[] syllables = { "glar", "bo", "zump", "fiko", "tra", "xi", "mu", "ka", "bazz", "qo" };
-        for (int i = 0; i < count; i++) gibberish += syllables[Random.Range(0, syllables.Length)] + syllables[Random.Range(0, syllables.Length)] + " ";
-        return gibberish.Trim();
+        int wordsUntilDot = Random.Range(5, 9);
+
+        for (int i = 0; i < count; i++)
+        {
+            string word = syllables[Random.Range(0, syllables.Length)] + syllables[Random.Range(0, syllables.Length)];
+
+            if (i == 0 || wordsUntilDot == 0)
+            {
+                word = char.ToUpper(word[0]) + word.Substring(1);
+            }
+
+            gibberish += word;
+
+            if (wordsUntilDot == 1 && i != count - 1)
+            {
+                gibberish += ". ";
+                wordsUntilDot = Random.Range(5, 9);
+            }
+            else if (i == count - 1)
+            {
+                gibberish += ".";
+            }
+            else
+            {
+                gibberish += " ";
+                wordsUntilDot--;
+            }
+        }
+        return gibberish;
     }
 
     public void OnMachineButtonClick()
