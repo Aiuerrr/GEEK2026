@@ -101,6 +101,16 @@ public class ClientManager : MonoBehaviour
         "Odkrycie echa Wielkiego Wybuchu potwierdziło teorię o narodzinach wszechświata. Naukowcy zarejestrowali słaby szum, który dociera do nas z każdego kierunku nieba. Jest to najstarsze światło, jakie możemy zaobserwować w całym kosmosie. To odkrycie pozwoliło nam zajrzeć w przeszłość o miliardy lat wstecz. Dzięki niemu wiemy, że wszechświat narodził się w jednej, gorącej chwili. To ostateczny dowód na to, jak niezwykła jest historia naszego bytu."
     };
 
+    private void Awake()
+    {
+        TotalGold = 0;
+        WonCoins = 0;
+        PaperCount = 3;
+        InkCount = 1;
+        CurrentInkUses = 2;
+        TextToCopy = "";
+    }
+
     IEnumerator Start()
     {
         if (machineButton != null) machineButton.interactable = false;

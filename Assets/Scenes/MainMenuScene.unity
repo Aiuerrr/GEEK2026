@@ -1697,6 +1697,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4820190041490325852, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
   m_PrefabInstance: {fileID: 1267600432066927151}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1859709618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8003439572911539992, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+  m_PrefabInstance: {fileID: 1267600432066927151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859709616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886cd6a2954b22a46850400ecfbe9a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptionsController
 --- !u!1001 &1267600432066927151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1708,6 +1719,62 @@ PrefabInstance:
     - target: {fileID: 1432991446797287382, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
       propertyPath: m_Name
       value: Panel_Options
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1859709618}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFullscreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692647278036233201, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1859709618}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMusicVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600844672957991190, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4820190041490325852, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
       propertyPath: m_Pivot.x

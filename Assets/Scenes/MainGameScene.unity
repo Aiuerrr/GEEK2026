@@ -330,16 +330,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146792019}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.06592559, w: 0.99782455}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 511427482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.56}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -61, y: 22}
+  m_AnchoredPosition: {x: -61, y: 6}
   m_SizeDelta: {x: 700, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146792021
@@ -366,8 +366,8 @@ MonoBehaviour:
 
     udalo ci sie utrzymac drukarnie!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
+  m_sharedMaterial: {fileID: -3226305004244728038, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.65
+  m_fontSize: 66.45
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1330,11 +1330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820190041490325852, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -173.74774
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4820190041490325852, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4820190041490325852, guid: 39dab74722bffbc4da7e369f324fb52a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2493,7 +2493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -238}
+  m_AnchoredPosition: {x: 10, y: -272}
   m_SizeDelta: {x: 500, y: 171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &605534931
@@ -5030,7 +5030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -374}
+  m_AnchoredPosition: {x: 10, y: -405}
   m_SizeDelta: {x: 500, y: 171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469652100
@@ -5911,8 +5911,8 @@ MonoBehaviour:
 
     zloto: 500'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
+  m_sharedMaterial: {fileID: -3226305004244728038, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6236,8 +6236,8 @@ MonoBehaviour:
     na \nWielki Wybuch, mo\u017Cna by\u0142o kiedy\u015B zobaczy\u0107\n jako \"\u015Bnie\u017Cenie\"
     w starych, analogowych telewizorach?\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
+  m_sharedMaterial: {fileID: -3226305004244728038, guid: b7db0b728d0f14e49ab60399a6f6939f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6300,7 +6300,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -889.6482, w: -81.04343}
+  m_margin: {x: 0, y: -32.861267, z: -901.5979, w: -81.04343}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
