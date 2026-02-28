@@ -7421,7 +7421,7 @@ MonoBehaviour:
   clientNumberText: {fileID: 772210516}
   textToType: "Przyk\u0142adowy tekst do przepisania. Wpisz go poprawnie, aby wygra\u0107
     gr\u0119."
-  initialTime: 120
+  initialTime: 210
   uiElementToShake: {fileID: 332344223}
   shakeIntensity: 15
   shakeDuration: 0.2
