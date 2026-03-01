@@ -9,14 +9,21 @@ public class OptionsController : MonoBehaviour
 
     void Start()
     {
-        if (musicSlider != null) musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        if (soundSlider != null) soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 0.75f);
-        if (fullscreenToggle != null) fullscreenToggle.isOn = Screen.fullScreen;
+        float savedMusic = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        float savedSound = PlayerPrefs.GetFloat("SoundVolume", 0.75f);
+        bool isFull = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+
+        if (musicSlider != null) musicSlider.value = savedMusic;
+        if (soundSlider != null) soundSlider.value = savedSound;
+
+        Screen.fullScreen = isFull;
+        if (fullscreenToggle != null) fullscreenToggle.isOn = isFull;
 
         if (musicSlider != null) musicSlider.onValueChanged.AddListener(SetMusicVolume);
         if (soundSlider != null) soundSlider.onValueChanged.AddListener(SetSoundVolume);
+        if (fullscreenToggle != null) fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
 
-        ApplyInitialVolumes();
+        ApplyInitialVolumes(savedMusic, savedSound);
     }
 
     void Update()
@@ -27,10 +34,10 @@ public class OptionsController : MonoBehaviour
         }
     }
 
-    void ApplyInitialVolumes()
+    void ApplyInitialVolumes(float music, float sound)
     {
-        SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 0.75f));
-        SetSoundVolume(PlayerPrefs.GetFloat("SoundVolume", 0.75f));
+        SetMusicVolume(music);
+        SetSoundVolume(sound);
     }
 
     public void SetMusicVolume(float volume)
@@ -63,6 +70,9 @@ public class OptionsController : MonoBehaviour
         }
 
         Screen.fullScreen = isFullscreen;
+
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void CloseOptions()

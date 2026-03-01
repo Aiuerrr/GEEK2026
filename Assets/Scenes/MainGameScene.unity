@@ -4034,7 +4034,7 @@ MonoBehaviour:
   targetScale: 0.75
   stepPositions:
   - {x: -580, y: 190}
-  - {x: 525, y: 150}
+  - {x: 650, y: 150}
   - {x: -490, y: 45}
   - {x: 530, y: 165}
   - {x: 510, y: -237}
@@ -7307,6 +7307,7 @@ MonoBehaviour:
   textToType: "Przyk\u0142adowy tekst do przepisania. Wpisz go poprawnie, aby wygra\u0107
     gr\u0119."
   initialTime: 210
+  mistakeCooldownDuration: 0.5
   uiElementToShake: {fileID: 332344223}
   shakeIntensity: 15
   shakeDuration: 0.2

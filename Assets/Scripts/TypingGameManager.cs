@@ -23,6 +23,9 @@ public class TypingGameManager : MonoBehaviour
     public string textToType = "";
     public float initialTime = 60f;
 
+    [Header("Mistake Settings")]
+    public float mistakeCooldownDuration = 0.5f;
+
     [Header("Visual Effects")]
     public RectTransform uiElementToShake;
     public float shakeIntensity = 15f;
@@ -36,6 +39,7 @@ public class TypingGameManager : MonoBehaviour
     private Vector2 originalUiPos;
     private bool isCursorVisible = true;
     private float blinkTimer = 0f;
+    private float mistakeCooldownTimer = 0f;
     private GameLoopManager gameLoopManager;
 
     void Start()
@@ -66,6 +70,7 @@ public class TypingGameManager : MonoBehaviour
         currentIndex = 0;
         mistakes = 0;
         savedWPM = 0;
+        mistakeCooldownTimer = 0f;
         isGameActive = true;
 
         UpdateTextDisplay();
@@ -88,6 +93,11 @@ public class TypingGameManager : MonoBehaviour
         UpdateLiveStatsUI();
 
         if (!isGameActive) return;
+
+        if (mistakeCooldownTimer > 0)
+        {
+            mistakeCooldownTimer -= Time.deltaTime;
+        }
 
         currentTime -= Time.deltaTime;
         if (currentTime <= 0)
@@ -137,15 +147,19 @@ public class TypingGameManager : MonoBehaviour
             }
             else
             {
-                mistakes++;
-                
-                if (AudioManager.Instance != null && AudioManager.Instance.sfxMistake != null)
+                if (mistakeCooldownTimer <= 0f)
                 {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMistake);
-                }
+                    mistakes++;
+                    mistakeCooldownTimer = mistakeCooldownDuration;
 
-                StopAllCoroutines();
-                StartCoroutine(ShakeUI());
+                    if (AudioManager.Instance != null && AudioManager.Instance.sfxMistake != null)
+                    {
+                        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxMistake);
+                    }
+
+                    StopAllCoroutines();
+                    StartCoroutine(ShakeUI());
+                }
             }
         }
     }
